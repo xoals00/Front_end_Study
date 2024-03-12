@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    const user={
+        name:'kim',
+        age: 30,
+        email:'tam@gmail.com',
+        address:'인천'
+    }
+    // let name = user.name
+    // let age = user.age
+    // let email = user.email
+
+    const {age, name : irum , address = 'korea'} = user
+    // let irum = name;
+    // console.log(age);
+    // // console.log(name);
+    // console.log(irum);
+    // console.log(address);
+    showNameAgeInfo(user)
+    function showNameAgeInfo({name, age}){
+        console.log(`name= ${name}, age=${age}`);
+    }
+    //배열(순서가 있다.) 구조 분해 할당
+    const truits = ['Apple', 'Banana', 'Cherry']
+    const [a,b,c] = truits
+    // console.log(a,b,c);
+    // const [,,b] = truits;
+    // console.log(b);
+</script>
+<body>
+    
+</body>
+</html>

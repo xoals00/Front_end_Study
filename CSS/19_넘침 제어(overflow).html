@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent{
+         background-color: orange;        
+         width: 200px;
+         height: 200px;
+         /* 넘침 제어 */
+         overflow: auto;
+        }
+        .child{
+            width: 300px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+    
+</head>
+<body>
+    <!-- overflow속성: 넘침을 방지
+  visible: 넘침 내용을 그대로 보여줌(기본값)
+  hidden: 넘침 내용을 잘라냄(제일 많이 씀)
+  scroll: 넘침 내용을 잘라냄(보기 싫음)
+  auto: 넘침 내용이 있는 경우에만 잘라내고 스크롤바 생성 -->
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+</body>
+</html>

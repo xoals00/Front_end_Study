@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //JS 데이터
+    //String: "", '', ``
+    //Number:
+    //Boolena: true, false
+    //underfinde:
+    //null:
+    //Array: []
+    //Object: {}
+    //String.prototype.indexOf() 메소드는 String객체 모두 사용할 수 있다.
+    let result='Hello world!'.indexOf('world')
+    console.log(result)  //첫글자index는 0부터
+    result='Hello world!'.indexOf('kim')
+    console.log(result)  //검색실패 -1
+    
+    const str='대한민국 최고'  //문자열 리터럴 객체 
+    //const str=new String('대한민국') //문자열 정식 객체
+    console.log(str.length) //7
+    console.log(str.indexOf('만세') != -1)  //false
+    console.log(str.slice(0,3))  //대한민(idx:0~2)
+    console.log(str.slice(5,7))  //최고(idx:5~6)
+    console.log(str.slice(2, -1))  //민국 최(idx:2~뒤쪽 1문자미만) 
+    console.log(str.replace('대한민국','한국' ))  //한국 최고
+    console.log(str.replace(' 최고','' ))  //삭제효과, 대한민국
+    const email='surecha@nuri.com'
+    console.log(email.match(/.+(?=@)/))  //정규표현식:@앞쪽 문자열 찾아줘 
+    console.log(email.match(/.+(?=@)/)[0]) 
+    const str2='    Hello world  '
+    console.log(str2.trim()) //문자열 앞뒤 공백제거 
+  </script>
+</body>
+</html>

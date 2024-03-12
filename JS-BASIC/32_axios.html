@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <h1>영화 제목1</h1>
+  <img src="" alt="" width="200">
+  <h1>영화 제목2</h1>
+  <img src="" alt="" width="200">
+  <script>
+    function fetchMovies() {
+      //https요청해야 문제가 발생하지 않음
+      axios
+        .get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+        .then(res => { //done은 없음
+          console.log(res)
+          const h1El = document.querySelector('h1')
+          const imgEl = document.querySelector('img')
+          h1El.textContent = res.data.Search[0].Title
+          imgEl.src = res.data.Search[0].Poster
+        })
+        .catch(error => console.log('1', error))
+    }
+    //fetchMovies()
+
+    //콜백 지옥(callback hell)
+    function fetchMovies1() {
+      axios({
+        method: 'get',
+        //url: 'https://www.omdbapi.com?apikey=7035c60c&s=frozen'
+        url: 'https://www.omdbapi.com',
+        params: { //get방식의 쿼리스트링, 즉 url 파라미터 
+          apikey: '7035c60c',
+          s: 'frozen'
+        },
+        responseType: 'json', //json(기본값), text, blob(이미지,사운드,비디오와 같은 멀티미디어 데이터)... 
+
+      }).then(res => { //done은 없음
+        console.log(res)
+        const h1Els = document.querySelectorAll('h1')
+        const imgEls = document.querySelectorAll('img')
+        h1Els[0].textContent = res.data.Search[0].Title
+        imgEls[0].src = res.data.Search[0].Poster
+
+        axios({
+          method: 'get',
+          //url: 'https://www.omdbapi.com?apikey=7035c60c&s=frozen'
+          url: 'https://www.omdbapi.com',
+          params: { //get방식의 쿼리스트링, 즉 url 파라미터
+            //get이외 방식의 data는 data속성이용 
+            apikey: '7035c60c',
+            s: 'jobs'
+          },
+          responseType: 'json', //json(기본값), text, blob(이미지,사운드,비디오와 같은 멀티미디어 데이터)... 
+
+        }).then(res => {
+          console.log(res)
+          const h1Els = document.querySelectorAll('h1')
+          const imgEls = document.querySelectorAll('img')
+          h1Els[1].textContent = res.data.Search[0].Title
+          imgEls[1].src = res.data.Search[0].Poster
+        }).catch(error => console.log('1-1', error))
+      }).catch(error => console.log('1', error))
+
+    } //fetchMovies End
+    // fetchMovies1()
+    //----------------------------
+    //async await로 콜백지옥 해결하기
+    async function fetchMovies2() {
+      const h1Els = document.querySelectorAll('h1')
+      const imgEls = document.querySelectorAll('img')
+      //await를 생략하면 서버에서 완료된 data가 아닌 Promise객체를 반환한다(주의)
+      let res = await axios.get('https://www.omdbapi.com/?apikey=7035c60&s=frozen')
+      console.log('1:', res); //성공 또는 실패 응답객체 출력
+      h1Els[0].textContent = res.data.Search[0].Title
+      imgEls[0].src = res.data.Search[0].Poster
+
+      res = await axios.get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs')
+      console.log('2:', res);
+      h1Els[1].textContent = res.data.Search[0].Title
+      imgEls[1].src = res.data.Search[0].Poster
+    }
+    //fetchMovies2()
+    //-------------------------------
+    //async, await, then, catch로 콜백지옥 해결하기
+    async function fetchMovies3() {
+      const h1Els = document.querySelectorAll('h1')
+      const imgEls = document.querySelectorAll('img')
+
+      await axios.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+        .then(res => {
+          console.log('1:', res);
+          h1Els[0].textContent = res.data.Search[0].Title
+          imgEls[0].src = res.data.Search[0].Poster
+
+      }).catch(err => console.log('1:', err))
+
+      await axios.get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs')
+        .then(res => {
+          console.log('2:', res);
+          h1Els[1].textContent = res.data.Search[0].Title
+          imgEls[1].src = res.data.Search[0].Poster
+
+        }).catch(err => console.log('2:', err))
+    }
+    //fetchMovies3()
+    //--------------------------------
+    //Promise 체이닝으로 콜백지옥 해결하기(일반적인 방법은 아님)
+    /*async function fetchMovies4(){
+    	const h1Els= document.querySelectorAll('h1')
+    	const imgEls = document.querySelectorAll('img')
+
+    	axios.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+    	.then(res=>{
+    		console.log("1",res)
+    	    h1Els[0].innerHTML=res.data.Search[0].Title
+    	    imgEls[0].src=res.data.Search[0].Poster
+    	    return axios.get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs')
+    	}).then(res=>{
+    		console.log("2",res)
+    	    h1Els[1].innerHTML=res.data.Search[0].Title
+    	    imgEls[1].src=res.data.Search[0].Poster	
+    	}).catch(err=>console.log("1 or 2", err))
+    }//function end
+    fetchMovies4()*/
+    //async await 및 try catch로 콜백지옥 해결하기
+    async function fetchMovies5() {
+      const h1Els = document.querySelectorAll('h1')
+      const imgEls = document.querySelectorAll('img')
+      try {
+        let res = await axios.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+        console.log('1:', res);
+        h1Els[0].textContent = res.data.Search[0].Title
+        imgEls[0].src = res.data.Search[0].Poster
+
+        res = await axios.get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs')
+        console.log('2:', res);
+        h1Els[1].textContent = res.data.Search[0].Title
+        imgEls[1].src = res.data.Search[0].Poster
+      } catch (err) { //1 또는 2비동기  에러처리   
+        console.log('catch: ', err)
+      }
+    }
+    //fetchMovies5()
+    //--------------------------------------
+    //위예제 함수로 정의하기
+    const h1Els = document.querySelectorAll('h1')
+    const imgEls = document.querySelectorAll('img')
+
+    async function getFirstMovie() {
+      console.log("first call")
+      let res = await axios.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+      h1Els[0].innerHTML = res.data.Search[0].Title
+      imgEls[0].src = res.data.Search[0].Poster
+      console.log("first end")
+      return res;
+    }
+    async function getSecondMovie(res) {
+      console.log("sec call")
+      let res = await axios.get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs')
+      h1Els[1].innerHTML = res.data.Search[0].Title
+      imgEls[1].src = res.data.Search[0].Poster
+      //console.log("2",res)
+      console.log("sec end")
+      return res;
+    }
+    //위예제 함수로 정의하기
+    async function fetchMovies6() {
+      try {
+        //await 생략시 pending상태의 Promise객체가 반환됨
+        let res = await getFirstMovie()
+        await getSecondMovie(res) //후속작업없으면 await 생략가능 
+
+      } catch (all_err) {
+        console.log(all_err)
+      }
+    } //function end
+    //fetchMovies6()
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /*일치 선택자: 순서 바뀌면 안됨*/
+    span.orange{  
+      color:red;
+    }
+    /* 자식 선택자 */
+    ul>.orange{
+      color: blue;
+    }
+
+    /* 하위(후손) 선택자: 자식선택자보다 많이 사용 */
+    div .orange{
+      color: aqua;
+    }
+    
+  </style>
+</head>
+<body>
+  <div>
+    <ul>
+      <li>사과</li>
+      <li>딸기</li>
+      <li class="orange">오렌지</li>
+    </ul>
+    <div>당근</div>
+    <p>토마토</p>
+    <span class="orange">오렌지</span>
+  </div>
+  <span class="orange">오렌지</span>
+</body>
+</html>

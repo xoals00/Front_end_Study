@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" value="동해물과 백두산이">
+    <input type="text" value="마르고 닳도록">
+    <script>
+        let inputEls = document.querySelectorAll('input')
+        for(let elem of inputEls){
+            console.log(elem.getAttribute('type'));
+            console.log(elem.getAttribute('value'));
+            console.log(elem.type);
+            console.log(elem.value);
+        }
+        inputEls[0].type = 'button'
+        // inputEls[0].setAttribute('type','button')
+        inputEls[0].vlaue = 'click'
+         // inputEls[1].setAttribute('value','click')
+    </script>
+</body>
+</html>

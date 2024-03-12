@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p1"> </p>
+    <button id="btn">innerHTML</button><br>
+    <img  id="image" src="../CSS/img/img01.jpg" alt="버섯돌이"><br>
+    <button id="imgChanger">이미지 변경</button>
+    <script>
+        const pEl = document.querySelector('#p1')
+        const btn1 = document.querySelector('#btn')
+        btn1.addEventListener('click',()=>{
+            pEl.innerHTML='동해물과 백두산이<br>마르고 닳도록'
+        })
+        const imgEl = document.querySelector('#image')
+        const btn2 = document.querySelector('#imgChanger')
+        btn2.addEventListener('click', ()=>{
+            imgEl.setAttribute('src' , "../CSS/img/img02.jpg") // 태그속성(Attribute)
+            imgEl.src="../CSS/img/img02.jpg" //객체속성(property) , checked readonly disabled
+            console.dir(imgEl);
+        })
+    </script>
+</body>
+</html>

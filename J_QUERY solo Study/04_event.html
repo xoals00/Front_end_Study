@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<style>
+    div {
+        width: 200px;
+        height: 200px;
+        margin-right: 7px;
+        text-align: center;
+    }
+    #mousezone {
+        background-color: #59b1f6;
+        float: left;
+    }
+    #overzone {
+        background-color: #ffb5b4;
+        float: left;
+    }
+</style>
+</head>
+
+<body>
+    <button id="btn">이벤트 제거</button>
+    <p id="1">클릭하면 글자 색상이 바뀌어요~!</p>
+    <p id="2">클릭하면 글자 색상이 바뀌어요~!</p>
+    <p id="3">클릭하면 글자 색상이 바뀌어요~!</p>
+    <p id="4">클릭하면 글자 색상이 바뀌어요~!</p>
+    <div id="mousezone">마우스 존</div>
+    <div id="overzone">H 오버 존</div>
+    <input type="text" placeholder="아이디">
+    <input type="password" placeholder="비밀번호">
+
+</body>
+<script>
+    $('input').focus(function(){
+        $(this).css('background-color', 'yellow');
+    });
+
+    $('input').blur(function(){
+        $(this).css('background-color', 'pink');
+    });
+
+    $('p').click(function(evt){ //on메소드의 쇼컷형태
+        console.dir(evt);
+        console.dir(this);//이벤트가 발생한 엘리먼트, js객체
+        console.dir($(this));//이벤트가 발생한 엘리먼트, jQ객체
+
+        $(this).css('color','blue');
+    });
+    /*이벤트를 바인딩하는 경우 성능 및 메모리에 영향을 미치기때문에 사용하지 않거나
+	 제거가 필요한 경우에 반드시 off()를 사용하여 제거해야합니다.
+	 작은 어플리케이션의 경우 영향이 크지 않으나 큰 어플리케이션의 경우 그 차이가
+     클 수 있습니다.*/
+     /*한번만 사용되고 알아서 제거되기 원한다면 .one()메소드를 사용하면 되지요!*/
+    // $("p").on('click', function(){
+    //     //$("p").off('dblclick'); //되살리지 못함
+    //     $('p').css('color','blue');
+    // });
+    $('p').dblclick(function(){
+        $(this).css('color','red');
+    });
+    $('#mousezone').mouseenter(function(){
+        $(this).html('마우스가 들어왔구나!!');
+        $(this).css('background-color', 'red');
+    });    
+    $('#mousezone').mouseleave(function(){
+        $(this).html('마우스가 나갔구나!!');
+        $(this).css('background-color', 'yellow');
+    });
+    $('#overzone').hover(function(){
+        $(this).html('마우스가 들어왔구나!!');
+        $(this).css('background-color', 'red');
+    }, function(){
+        $(this).html('마우스가 나갔구나!!');
+        $(this).css('background-color', 'yellow');
+    });
+
+</script>
+</html>

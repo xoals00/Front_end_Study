@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bClass{
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+    <input id="val" type="text" />
+    <button type="button" onclick="addList()">추가</button>
+    <br>
+    <ul id="myList">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Milk</li>
+    </ul>
+
+    <button id="btn1">엘리먼트 추가</button>
+    <button id="btn2">자식요소 지우기</button>
+    <button id="btn3">자식요소 교체</button>
+	<button id="btn4">class 제거</button>
+    <input type="button" class="bClass" value="click me" >
+    <script>
+        //class 제거
+        document.getElementById('bnt4').addEventListener('click', function(){
+            let elem = document.querySelector('.bClass')
+            // elem.removeAttribute('class')
+            elem.classList.remove('bClass') // bClass만 삭제
+            console.log(elem.classList);
+        })
+        //엘리먼트 교체
+        document.getElementById('bnt3').addEventListener('click', function(){
+            let tNode = document.createTextNode('Water')
+            let item = document.getElementById('myList').firstElementChild
+            item.replaceChild(tNode, item.firstChild)
+        })
+        //엘리먼트 삭제
+        document.getElementById('btn2').addEventListener('click', function(){
+            let myList = document.getElementById('myList') // 부모 ul
+            // console.log(myList.childNodes);
+            console.log(myList.children); // ElementNode 3개
+            myList.removeChild(myList.lastElementChild)
+        })
+        document.getElementById('btn1').addEventListener('click', function(){
+            // let tNode = document.createTextNode('click me')
+            // let btn = document.createElement('button') //<button> <button>
+            // btn.appendChild(tNode)
+            // document.body.appendChild(btn)
+            let btn =  document.createElement('input')
+            btn.setAttribute('type','button')
+            btn.setAttribute('value','click me') 
+            btn.setAttribute('class','bClass')
+            document.body.appendChild(btn)
+        })
+        function addList(){
+            let txt = document.getElementById('val').value
+            let myList = document.getElementById('myList') // 부모  ul
+            let liElem = document.createElement('li') // li객체 생성
+            // Water txtNote 생성
+            let txtNote = document.createTextNode(txt) //Water Note생성
+            liElem.appendChild(txtNote) // <li>Water</li>
+            myList.appendChild(liElem)  // 마지막 자식으로 추가
+            // myList.prepend(liElem)  //첫째 자식으로 추가
+            // document.querySelector('body').append(liElem)
+        }
+    </script>
+</body>
+</html>

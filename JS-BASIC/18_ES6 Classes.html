@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    const hong = {
+      name: 'hong',
+      //normal: function(){
+      //   console.log(this.name)
+      // },
+      //위 메소드의 간소화 표현
+      normal() {
+        console.log(this.name)
+      },
+	  //화살표함수 간소화 안됨
+      arrow: () => {
+        console.log(this.name)
+      }
+    }
+    hong.normal()
+    hong.arrow()
+
+    ////ES6 Classes
+    //생성자 함수활용을 class로 간소화 할 수 있음
+    //class는 react에서 많이 활용함
+    class User {
+      constructor(first, last) {
+        this.firstName = first //this생략 안됨
+        this.lastName = last
+      }
+      //prototype에 1번만 생성한다.
+      getFullName() {
+        return `${this.firstName} ${this.lastName}`
+      }
+    } //end class
+    //생성자 함수를 통한 kim인스턴스 생성  
+    const kim = new User('kim', 'dong')
+    const lee = new User('lee', 'na')
+    console.log(kim)
+    console.log(lee)
+    console.log(kim.getFullName())
+    console.log(lee.getFullName());
+  </script>
+</body>
+
+</html>

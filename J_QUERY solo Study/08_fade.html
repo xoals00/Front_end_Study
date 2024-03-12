@@ -1,0 +1,57 @@
+﻿<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<style>
+		div{
+			width: 80px;
+			height: 80px;
+			display: none;
+		}
+		</style>
+	</head>
+	<body>
+		<button id="visible">Fade In</button>
+		<button id="invisible">Fade Out</button>
+		<button id="onOff">Fade Toggle</button>
+		<img src="btn.png" width="50px" height="50px"/>
+		<div style="background-color:red;"></div>
+		<div style="background-color:green;"></div>
+		<div style="background-color:blue;"></div>		
+	</body>
+	<script>
+	$("button").click(function(){
+		let txt = $(this).text();
+		console.log(txt);
+	});
+	 //재귀함수가 아닌 방법(div개수가 고정이고 적을때)
+	$("#visible").click(function(){
+		$("div").first().fadeIn("fast", function(){
+			$(this).next("div").fadeIn("fast", function(){ //다음요소가 div가 아닐수 있을때
+				$(this).next("div").fadeIn("fast");
+			});
+		});
+	});
+	//재귀함수(div개수가 가변이고 많을때)
+	$("#invisible").click(function(){
+		$("div").first().fadeOut("slow", function hideNext() {
+			$(this).next("div").fadeOut("slow", hideNext);
+		});
+	});
+	
+	$("#onOff").click(function(){
+		$("div").first().fadeToggle("slow", function toggleNext() {
+			$(this).next("div").fadeToggle("slow", toggleNext);
+		});
+	});
+	
+	$("img").hover(function(){
+		$(this).fadeTo("slow", 0.15,function(){
+			$(this).attr("src","btn2.png");
+		});
+	},function(){
+		$(this).fadeTo("slow", 1,function(){
+			$(this).attr("src","btn.png");
+		});		
+	})
+	</script>
+</html>

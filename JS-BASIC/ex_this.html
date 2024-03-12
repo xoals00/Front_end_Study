@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="bnt1" onclick="fct(this)">
+    <input type="button" value="bnt2" onclick="fct(this)">
+    <script>
+        //this: 현재 실행중인 객체(elemet)
+
+        function fct(obj){
+            // console.log(this);
+            console.log(obj);
+            if(obj.value == 'bnt1'){
+                console.log('1번 버튼');
+            }else{
+                console.log('2번 버튼');
+            }
+            
+        }
+    </script>
+</body>
+</html>

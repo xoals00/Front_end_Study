@@ -1,0 +1,51 @@
+﻿<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<style>
+		div{
+			position: absolute;
+			background-color: yellow;
+			left: 5px;
+			width: 90px;
+			height: 90px;
+			margin: 5px;
+		}
+		</style>
+	</head>
+	<body>
+		<button id="left">◀</button>
+		<button id="right">▶</button>
+		<button id="stop">■</button>
+		<button id="special">★</button>
+		<button id="step">step</button>
+		<div id="obj"></div>
+	</body>
+	<script>
+		$("#right").click(function(){
+			$("#obj").animate({"left":"+=1000"},"slow","swing");
+		});
+		
+		$("#left").click(function(){
+			$("#obj").animate({"left":"-=1000"},"slow","linear");
+		});
+		
+		$("#stop").click(function(){
+			$("#obj").stop();
+		});
+		
+		$("#special").click(function() {
+			$("#obj").animate({
+				width: ["toggle", "swing"],
+				height: ["toggle", "swing"],
+				opacity: "toggle"
+			}, 1500, "linear", function() {
+				alert("애니메이션 끝");
+			});
+		});
+		
+		$("#step").click(function(){
+			$("#obj").animate({"left":"+=500"},"slow").animate({"top":"+=500"},"slow").animate({"left":"-=500"},"slow").animate({"top":"-=400"},"slow");
+			
+		});
+	</script>
+</html>

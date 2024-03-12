@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const user={
+            name: 'kim', age: 30,
+            emails: ['thekim@nuri.net','neo@gmail.com'],
+            companyName:'icia'
+        } 
+        console.log(user);
+        // js객체 ---> json(문자열)변환
+        const json = JSON.stringify(user)
+        console.log(json);
+        console.log(typeof json);
+        // json ---> js겍체로 변환
+        const obj = JSON.parse(json)
+        console.log(obj);
+
+        localStorage.setItem('user',JSON.stringify(user))
+       console.log(JSON.parse(localStorage.getItem('user'))); 
+
+       //    localStorage.removeItem('user') 데이터 삭제
+       //localStorage 데이터 수정
+       const str = localStorage.getItem('user') 
+       const obj2 = JSON.parse(str)
+       obj2.age = 20
+       console.log(obj2);
+       //obj를 localStorage에서 저장후 확인
+       localStorage.setItem('user: ',JSON.stringify(obj2));
+
+
+
+    </script>
+</body>
+</html>

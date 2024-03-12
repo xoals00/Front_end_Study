@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.parent{
+            background-color: yellow;
+            width : 400px;
+            height : 180px;
+            /*자식으로 상속됨*/
+            text-align : center;				
+        }
+        
+        div.ch1{
+            background-color: blue;
+            width : 300px;
+            height : 50px;		
+            margin:20px auto;				
+        }
+        
+        div.ch2{
+            background-color: green;
+            width : 300px;
+            height : 50px;		
+            margin:20px auto;				
+        }
+    </style>
+    <script src="./js/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <div class="parent">
+    <b>Parent Element</b>
+    <div class="ch1">Child Element 1</div>
+    <div class="ch2">Child Element 2</div>
+</div>
+<button id="remove">remove()</button>
+<button id="empty">empty()</button>
+    <script>
+        $('#empty').click(function(){
+            $('.parent').empty()
+        })
+        $('#remove').click(function(){
+            $('.parent').remove()
+        })
+
+    </script>
+</body>
+</html>

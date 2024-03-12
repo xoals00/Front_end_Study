@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    ID : <input id="id" type="text" value="cha"/>
+         <br>
+         <a href="#">링크 이동</a>
+</body>
+<script>
+          $("a").click(function () {
+            //let userId=$('#id').attr('value'); //정적인 값 반영
+            //let userId=$('#id').prop('value'); //동적인 값 반영
+           let userId=$('#id').val(); //동적인 값 반영(권장)
+            console.log(userId);
+            if (userId == "admin") {
+                 $("a").attr("href", "http://www.icia.co.kr");
+            }else {
+                 $("a").attr("href", "http://www.google.co.kr");
+            }
+        });
+    
+</script>
+
+</html>

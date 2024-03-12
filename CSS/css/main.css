@@ -1,0 +1,28 @@
+.box{
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+    transition: 1s;
+}
+/* :hover: 가상클래스 선택자 */
+.box:hover{
+    width: 300px;
+    background-color: royalblue;
+}
+.box:active{
+    width: 300px;
+    background-color: red;
+}
+.box:focus{
+    width: 300px;
+    background-color: pink;
+}
+a:hover{
+    color: blue;
+}
+a:active{
+    color: red;
+}
+input:focus{
+    background-color: orange;
+}

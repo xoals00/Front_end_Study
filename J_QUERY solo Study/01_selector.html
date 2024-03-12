@@ -1,0 +1,38 @@
+﻿<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+        //$(function(){
+           // alert("웹페이지가 로딩된후 실행됨");
+        //})    
+    </script>
+	</head>
+	<body>
+		<h1>클래스가 없다.</h1>
+		<h1 class="cls">클래스가 있다.</h1>
+		<h2>클래스가 없다.</h2>
+		<h2 class="cls">클래스가 있다.</h2>
+
+		<p id="one"></p>
+		<p>태그만 있는 녀석</p>
+		<p>태그만 있는 녀석</p>		
+
+		<button id="idSel">아이디</button>
+		<button id="classSel">클래스</button>
+		<button id="tagSel">태그</button>
+	</body>
+	<script>
+	    $("#idSel").click(function(){
+			$("#one").html("안녕 새로운 문자가 생겼어.");
+		});
+		
+		$("#classSell").click(function(){
+			$(".cls").css({"background-color":"blue","color":"yellow"});//.css("color","yellow");
+		});
+		
+		$("#tagSell").click(function(){
+			$("p").css("color","blue");
+		});
+	
+	</script>
+</html>

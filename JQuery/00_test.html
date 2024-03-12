@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.7.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#btn').click(function(){
+                $('#result').append('내용추가<br>')
+            })
+        })
+        // $(function(){
+        //     console.log('jQ객체: ',$('#btn'));
+        //     console.log('jQ객체: ',$('#btn')[0]);
+
+        //     $('#btn').click(function(){
+        //         $('#result').append('내용추가<br>')
+        //     })
+        // })  
+    </script>
+
+    <script>
+
+        // (document).ready 생략가능 
+        // $(()=>{
+        //     $('#btn').click(()=>{
+        //         $('#result').append('내용추가<br>')
+        //     })
+        // })
+        // let btn = document.getElementById('btn');
+        // btn.addEventListener('click',function(){
+        
+        // })
+        // $('btn').click(function(){
+            
+        // })
+    </script>
+
+    <script>
+        $(function(){
+            $('#btn').click(function(){
+                // let divElem = document.querySelector('result')
+                // divElem.innerHTML='aaaa'
+                $('#result').append('내용추가<br>')
+            })
+      //console.log('jQ객체:',$('#btn'))
+      //console.dir($('#btn')[0])
+     // let js=document.getElementById('btn')
+      //js=document.querySelector('#btn')
+      let $jq=$('#btn')
+      $jq.click(function(){
+        //let divElem=document.querySelector('#result')
+        //divElem.innerHTML='aaaa'  //js객체
+        let $div=$('#result')  //jQ객체
+        $div.append('내용추가<br>')
+        //$div.html('aaaaa')  //덮어쓰기 
+      }) //end click
+    }) //end ready
+    </script>
+</head>
+<body>
+    <div id="result"></div>
+    <button id="btn">추가</button>
+</body>
+</html>

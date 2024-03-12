@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //promise mdn검색
+    //Promise객체 비동기 작업이 맞이할 미래의 완료 또는 실패와 그 결과 값을 나타냄
+    //Promise 상태값 종류
+    //-대기(pending):이행하거나 거부되지 않은 초기 상태
+    //-이행(fulfilled):연산이 성공적으로 완료됨
+    //-거부(rejected):연산이 실패함
+    //Promise 메소드: then(), catch(), finally()
+
+    //async, await: ECMAScript2017(ES8)
+    //Promise: ECMAScript2015(ES6)
+    //1.async, await로 비동기 순서제어(A->B)
+    // function a(){
+    //   return new Promise((resolve)=>{
+    //     setTimeout(()=>{
+    //       console.log('A');
+    //       resolve()
+    //     }, 1000)
+    //   })
+    // }
+    // async function test(){
+    //   await a()
+    //   console.log('B');
+    // }
+    // test()
+
+    //2.Promise객체의 then()메소드로 비동기 순서제어(A->B)
+    // function a(){
+    //   return new Promise((resolve)=>{
+    //     setTimeout(()=>{
+    //       console.log('A');
+    //       resolve()
+    //     }, 1000)
+    //   })
+    // }
+    // function test(){
+    //   // const promise = a()
+    //   // promise.then(()=>{
+    //   //   console.log('B');  
+    //   // })
+    //   a().then(()=>{
+    //     console.log('B');  
+    //   })
+    // }
+    // test()
+
+    //3.Promise객체의 then()메소드로 비동기 순서제어(A->B->C->D)
+    //then() 보다 await, async가 가독성이 좋지만 알아두자
+    // function a() {
+    //   return new Promise((resolve) => {
+    //     setTimeout(() => {
+    //       console.log('A');
+    //       resolve()
+    //     }, 1000)
+    //   })
+    // }
+    // function b() {
+    //   return new Promise((resolve) => {
+    //     setTimeout(() => {
+    //       console.log('B');
+    //       resolve()
+    //     }, 1000)
+    //   })
+    // }
+    // function c() {
+    //   return new Promise((resolve) => {
+    //     setTimeout(() => {
+    //       console.log('C');
+    //       resolve()
+    //     }, 1000)
+    //   })
+    // }
+    // function d() {
+    //   return new Promise((resolve) => {
+    //     setTimeout(() => {
+    //       console.log('D');
+    //       resolve()
+    //     }, 1000)
+    //   })
+    // }
+    //콜백지옥과 유사하기 때문에 비권장
+    // function test() {
+    //   a().then(() => {
+    //     b().then(() => {
+    //       c().then(() => {
+    //         d().then(() => {
+    //           console.log('Done!');
+    //         })
+    //       })
+    //     })
+    //   })
+    // }
+    // test()
+   // 콜백지옥 없이 비동기 순서제어(권장)
+    //function test() {
+      // a().then(() => {
+      //   return b()  //Promise 객체 반환하기 때문에
+      // }).then(()=>{  //체이닝으로 then을 호출 가능
+      //   return c()
+      // }).then(()=>{
+      //   return d()
+      // }).then(()=>{
+      //   console.log('Done!');
+      // })
+      //위 코드 간소화1(길어서 가독성이 떨어짐)
+      //a().then(()=>b()).then(()=>c()).then(()=>d()).then(()=>console.log('Done!'))
+    //   a()
+    //     .then(()=>b())
+    //     .then(()=>c())
+    //     .then(()=>d())
+    //     .then(()=>console.log('Done!'))
+    // }
+    // test()
+
+    //4. reject()호출:로직실패(에러), resolve()호출: 로직이행(성공).
+    //Promise의 then()은 resolve의 리턴값을 받음, 
+    //Promise의 catch()는 reject의 리턴값을 받음 , 옵션 메소드
+    //Promise의 finally()는 항상 실행됨(추가로직정의), 옵션 메소드
+    function a(number) {
+      return new Promise((resolve,reject) => {
+        if(number >4){
+          reject('실패')  
+          return  //reject()호출되면 resolve는 호출되지 않도록
+        }
+        setTimeout(() => {
+          console.log('A');
+          resolve('성공')  
+        }, 1000)
+      })
+    }
+    // function test(){
+    //   a(2)
+    //     .then((res)=>{ //res =resolve의 출력값
+    //       console.log(res,' Resolve!');
+    //     })
+    //     .catch((err)=>{  //err =reject의 출력값
+    //       console.log(res,' Reject!');
+    //     })
+    //     .finally(()=>{   //받을 인자가 없어 매개변수 생략함
+    //       console.log('Done!');  //항상 실행됨
+    //     })
+    // }
+    // test()
+    //위 예제의 async, await 버전
+    async function test(){
+      // await a(2)
+      //   .then((res)=>{  
+      //     console.log(res,' Resolve!');
+      //   })
+      //   .catch((res)=>{  
+      //     console.log(res,' Reject!');
+      //   })
+      //   .finally(()=>{   //받을 인자가 없어 매개변수 생략함
+      //     console.log('추가로직');  //항상 실행됨
+      //   })
+
+      //위 예제를 예외처리 문법으로 처리한 버전
+      //await a(8)  // return 때문에  promise 실패되어 continue가 처리안됨 
+      //console.log('continue...');
+      try{
+        await a(8)
+        console.log('continue...');
+      }catch(error){
+        console.log('Reject!'); 
+      }finally{
+        console.log('추가 로직');
+      }
+    }
+    test()
+  </script>
+</body>
+
+</html>

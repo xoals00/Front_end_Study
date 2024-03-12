@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <style>
+        div {
+            background: #ece023;
+            width: 40px;
+            height: 40px;
+            margin: 2px;
+            float: left;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="view">보이기</button>
+    <button id="onOff">toggle</button>
+    <div id="1">click1</div>
+    <div id="2">click2</div>
+    <div id="3">click3</div>
+    <div id="4">click4</div>
+    <div id="5">click5</div>
+</body>
+<script>
+    $('#view').click(function(){
+        $('div').first().show("fast", function showNext(){
+            console.log($(this));//현재 작업중인 엘리먼트
+            $(this).next("div").show("fast",showNext);
+        });//show End
+    });//click end
+
+    //동적으로 결정되는 일반 함수와는 달리 화살표 함수의 this 언제나 상위 스코프의 this를 가리킨다. 이를 Lexical this라 한다. 화살표 함수는 앞서 살펴본 Solution 3의 Syntactic sugar이다.
+    //https://poiemaweb.com/es6-arrow-function  참고
+    //즉 메소드를 호출한 객체를 가리키지 않고 화살표 함수가 정의된 
+    // 블럭범위의 객체를 가리킨다. 따라서 화살표 함수로 메소드를 정의하는 것은 바람직하지 않다.
+    $('div').click(function(){  //=>함수를 사용하지 말것
+        $(this).hide(1000, ()=>{
+            $(this).remove(); //html문서에서 요소를 제거한다.
+                              //보이기 버튼을 눌러도 나타나지 않는다.
+        });
+    });
+    
+//easing(변환효과)를 설정하는 방법
+//- http://jqueryui.com/ 에 접속 후 우측에 Stable 버튼을 눌러서 다운 받습니다.
+//- 다운 받은 파일을 압축해제 하고 jquery-ui.min.js 파일을 찾습니다.
+//변환효과 swing은 기본값이라 생략가능
+    $('#onOff').click(function(){
+        $('div').toggle('slow',"easeOutBounce",function(){ //show, hide이외 핸들러(함수) 추가
+            let onOff=$('div').css('display'); //none, block
+            if(onOff=="none")
+                $('#onOff').text("ON");
+            else
+                $('#onOff').text("OFF");    
+        });
+    });
+</script>
+</html>

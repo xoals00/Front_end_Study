@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 컴파일 언어(java , c)<---> 인터프리터 언어 (js,파이썬)
+        // 기명 함수
+        // function sum(x , y){
+        //     return x+y;
+        // }
+        // let a = sum(1,3);
+        // const b = sum(1.3,2.2);
+        //
+        // console.log(a , b);
+        // console.log(a + b);
+        // console.log(sum(10,20));
+        // // 익명 함수
+        // // 함수도 객체
+        // const sum2 = function(x,y){
+        //     if(x<2){
+        //         return
+        //     }
+        //     return x+y;
+        // }
+        // console.log(sum2);
+        // console.log(sum2(1,3)); // x<2 조건에 참
+        // console.log(sum2(4,3));
+        // let a;
+        // console.log('a: ', a);
+        // if(a){
+        //     console.log(true);
+        // }else{
+        //     console.log(false);
+        // } // undefined 는 false
+        //
+        // function sum3(){
+        //     console.log(arguments); // 내장된 매개변수
+        //     return arguments[0] + arguments[1] + arguments[2]
+        // }
+        // console.log(sum3(3,7,5));
+
+
+        // 함수 오버로딩 없음
+        function sum4(x,y,z){
+            console.log(x,y,z);
+        }
+        sum4();
+        sum4(10);
+        sum4(10,20);
+        sum4(10,20,30);
+        sum4(10,20,30,40);
+    </script>
+</body>
+</html>

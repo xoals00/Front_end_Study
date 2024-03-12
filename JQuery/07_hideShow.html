@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.7.1.js"></script>
+    <style>
+		div{
+			background-color:green;
+			width:100px;
+			padding: 10px;
+			text-align:center;
+		}
+		</style>
+        <script>
+            $(function(){
+                //div hover시 리스트 제어
+                $('ul').hide()
+                $('div').hover(()=>$('ul').show(1000), ()=> $('ul').hide(1000))
+                //onOff버튼 리스트 제어
+
+                //display : none(영역도 사라짐)
+                $('#onOff').click(function(){
+                    let view = $('p').css('display')
+                    if(view == 'none'){
+                        $('#onOff').text('OFF')
+                        $('p').show()
+                    }else{
+                        $('#onOff').text('ON')
+                        $('p').hide()
+                    }
+                })
+                $('#toggle').click(()=>$('p').toggle(1000))
+            })  
+        </script>
+</head>
+<body>
+    <div>메뉴1</div>
+		<ul>
+			<li>LIST 01</li>
+			<li>LIST 02</li>
+			<li>LIST 03</li>
+			<li>LIST 04</li>
+			<li>LIST 05</li>
+		</ul>
+		<button id="toggle">토글버튼</button>
+		<button id="onOff">OFF</button>
+		<p>LIST 01</p>
+		<p>LIST 02</p>
+		<p>LIST 03</p>
+		<p>LIST 04</p>
+		<p>LIST 05</p>
+		<br>
+		<input id="onf" type="button" value="OFF"/>
+</body>
+</html>

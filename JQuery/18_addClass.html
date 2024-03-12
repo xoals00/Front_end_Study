@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.7.1.js"></script>
+    <style>
+		div{
+            display:none;
+        }
+        .ex{
+            background-color: yellow;
+            text-align: center;
+            width: 200px;
+            height: 200px;
+            display:block;
+        }
+        .ex.xx{ 
+            background-color: cadetblue;
+            text-align: center;
+            width: 200px;
+            height: 200px;
+            display:block;
+        }
+            
+        </style>
+</head>
+<body>
+    <button id="add">클래스 추가</button>
+        <button id="remove">클래스 삭제</button>
+        <button id="toggle">TOGGLE</button>
+		<div class="ex">DIV</div> 
+        <!-- 클래스 2개 -->
+    <script>
+        $('#toggle').click(function(){
+            // $('div').toggleClass('xx')
+            let sw = $('div').hasClass('xx')
+            console.log(sw);
+            if(sw== true){
+                $('div').removeClass('xx')    
+            }else{
+                $('div').addClass('xx')    
+            }
+        })
+        $('#remove').click(function(){
+            $('div').removeClass('xx')
+        })
+         $('#add').click(function(){
+            $('div').addClass('xx')
+         })
+    </script>
+</body>
+</html>

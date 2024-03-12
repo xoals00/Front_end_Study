@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // const userAge =  new Object()
+        
+        const userAge = {
+            //key(property):value
+            name : 'kim', //키값은 중복되면 덮어쓴다.
+            age: 40
+        }
+        const userEmail = {
+            name:'tam',
+            email:'tam@gmail.com'
+        }
+        // 내장객체            
+        // Object.assign 정적메소드(클래스 메소드)
+        // console.log(userAge.toString); 프로토타입 메소드(인스턴스 메소드)
+        console.log(userAge);
+        console.log(userEmail);
+        // .assign(대입): // 정적 메소드
+
+        // 두개 이상의 배열데이터를 타겟객체로 복사후
+        // 타겟객체를 반환
+        // const target = Object.assign(userAge, userEmail)
+        // userAge와 userEmail객체 합하여 새로운 객체 생성하기
+        const target = Object.assign({}, userAge, userEmail)
+        console.log(target);
+        console.log(userAge);
+        console.log(userEmail);
+        console.log(target==userAge);
+
+        const a = {k:100}
+        const b = {k:100}
+        console.log(a===b); //false 참조값 비교
+        console.log(a.k===b.k);//true 내용물비교
+
+        const user ={name: 'Hong', age:30, email:'Hong@nuri.net'}
+        const keys = Object.keys(user)  // ['name','age''email']
+        // console.log(keys);
+        // for(let key of keys){
+        //     console.log(key+': ', user[key]);   //'name' 'age' 'email'
+        // }                                       // Hong   30    Hong@nuri.net
+
+        // for(let key in user){ //keys 를 사용하지 않고 유저만으로 굴렸을 경우.
+        //     console.log(key, user[key]);
+        // }
+
+        // console.log(user[name]); //에러
+        // console.log(user['name']);
+        // console.log(user.name);
+        // const values = keys.map(key=>user[key])
+        // console.log(values);
+        //문> 위 map 예제를map을 사용하지 말고 반복문으로 출력하시오
+        // const keyNames = []
+        // for(let key in user){
+        //     keyNames.push(key)
+        // }
+        // keyNames.sort()
+        // for(let key of keyNames){
+        //     console.log(key+":"+user[key]);
+        // }
+        const newArr = []
+        //방법 1
+        // for(let key of keys){
+        //     newArr.push(user[key])// ['hong' '30' 'email']
+        // }
+        //console.log(newArr);
+        // for(let idx in keys){
+        //     newArr.push(user[keys[idx]])
+        // }
+        // console.log(newArr);
+        keys.forEach(key=>newArr.push(user[key]))
+
+        console.log(newArr);
+        //위와같이 forEach, fillter 메소드 연습 
+
+        const memberList=[
+            {name:'kim', age:20 , addr:'서울'},
+            {name:'lee', age:22 , addr:'인천'},
+            {name:'park', age:40 , addr:'서울'},
+
+        ]
+        newObj.name = 'cha'
+        // let newObj ={name:'cha'}
+        newObj.age = 50
+        newObj.addr = '안산'
+        memberList.push(newObj)
+        console.log(memberList);
+        const keys2 = Object.keys(memberList)
+
+        // for(let i = 0; i<memberList.length; i++){
+        //     console.log('name: ',memberList[i].name);
+        //     console.log('age: ',memberList[i].age);
+        //     console.log('adder: ',memberList[i].addr);
+        //     console.log('-----------------------');
+        // }
+        for(let member of memberList){
+            for(let key in member){
+                console.log(`key: ${member[key]}`);
+            }
+            console.log('-----------------');
+        }
+
+        memberList.forEach(member=>{
+            for(let key in member){
+                console.log(`key: ${member[key]}`);
+            }
+            console.log('---------');
+        })
+        // const user ={name: 'Hong', age:30, email:'Hong@nuri.net'}
+        // const keys = Object.keys(user)  // ['name','age''email']
+
+        const data ={ members:[
+            {name:'kim', age:20 , addr:'서울'},
+            {name:'lee', age:22 , addr:'인천'},
+            {name:'park', age:40 , addr:'서울'},
+
+            ],
+            cnt:3
+        }
+        const member =  data.members
+        const cnt =  data.cnt
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

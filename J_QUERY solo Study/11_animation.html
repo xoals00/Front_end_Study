@@ -1,0 +1,37 @@
+﻿<html>
+ 	<head>
+ 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<style>
+		div#obj{
+			position: absolute;
+			background-color: green;
+			left: 50%;
+			top: 50%;
+			width: 30px;
+			height: 30px;
+		}
+		div#follow{
+			position: absolute;
+			height: 30px;
+		}
+		</style>
+	</head>
+	<body>
+	<div id="obj"></div>
+	<div id="follow">마우스를 따라 다녀요!</div>
+	</body>
+	<script>
+		$(document).click(function(evt){
+			console.log(evt);
+			$("#obj").animate({
+			"left":evt.clientX,
+			"top":evt.clientY,
+			},"slow","swing");
+		});
+		
+		$(document).mousemove(function(evt){
+			$("#follow").css("left",evt.clientX);
+			$("#follow").css("top",evt.clientY);
+		});		
+	</script>
+</html>

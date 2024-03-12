@@ -1,0 +1,70 @@
+﻿<html>
+    <head>
+        <meta charset="utf-8">
+        <title>테이블 추가</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            table, td{
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            td{
+                padding: 10px 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <table width="100%">
+            <tr>
+                <td>학번</td>
+                <td>이름</td>
+                <td>과목</td>
+                <td>학점</td>
+                <td>설명</td>
+            </tr>
+        </table>
+        학번 : <input  type="text"/><br/>
+        이름 : <input  type="text"/><br/>
+        과목 : <input  type="text"/><br/>
+        학점 : <input  type="text"/><br/>
+        설명 : <input  type="text"/><br/>
+        <button>입력</button>
+    </body>
+    <script>
+    $('button').click(function () {
+      let $elems = $('input');
+      console.log($elems);
+      //1번째 방법
+      let txt = '';
+      txt += '<tr>';
+      for (let elem of $elems) { //열의 개수만큼
+        txt += `<td>${elem.value}</td>`; //ie old 안될수 있음
+      }
+      txt += '</tr>';
+      $('table').append(txt);
+      //$(txt).appendTo('table'); //위와 동일
+      
+      //2번째 방법
+      // let $tr=$('<tr>').appendTo('table');
+      // for(let elem of $elems){
+      //     $('<td>').text(elem.value).appendTo($tr);    
+      // }
+      //3번째 방법
+      // let $tr = $('<tr>').appendTo('table');
+      // console.log($tr);
+      // for (let elem of $elems) {
+      //     $tr.append($('<td>').text($(elem).val()));
+      // }
+      //4번째 방법
+      // let $tr = $('<tr>').appendTo('table');
+      // $.each($elems, function(key, elem){
+      //   $tr.append($('<td>').text($(elem).val()));
+      // })//each end
+    })  //click end
+  </script>
+</html>
+
+
+
+
+

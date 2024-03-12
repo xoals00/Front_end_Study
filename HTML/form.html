@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function check(){
+            let id = document.getElementById('id').value;
+            let pw = document.getElementById('pw').value;
+            console.log(id,pw);
+      
+            if(id.length<4|| id.length >6){
+        alert('아이디 길이는 4~6입니다');
+        return false; 
+        }
+        document.loginForm.submit();
+     }
+    </script>
+</head>
+<body>
+    <form name="loginForm" action="login" method="get">
+    <input type="text" name="id" id="id" placeholder="아이디 입력..."><br>
+    <input type="password" name="pw" id="pw" placeholder="비밀번호 입력..."><br>
+    <button>전송1</button>
+    <input type="submit" value="전송2">
+    <input type="button" value="버튼" onclick="check()">
+
+    
+    </form>
+   
+</body>
+</html>

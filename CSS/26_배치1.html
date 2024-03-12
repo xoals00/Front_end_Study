@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: 400px;
+            height: 300px;
+            background-color: tomato;
+            position: relative;
+        }
+        .container{
+            /* absolute, fixed는 위치상의 부모 구조가 무너지는 경우가 있다. */
+            width: 300px;
+            background-color: blue;
+            position: relative;
+        }
+        .container .item{
+            border: 4px solid red;
+        }
+        .container .item:nth-child(1){
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+        }
+        .container .item:nth-child(2){
+            width: 140px;
+            height: 70px;
+            background-color: azure;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+        }
+        .container .item:nth-child(3){
+            width: 70px;
+            height: 120px;
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <!-- position속성: 요소의 위치 지정 기준 
+    static: 기준없음(기본값)
+    relative: 요소 자신을 기준(부모 역할)
+    absolute: 위치 상 부모 요소를 기준(자식 역할)
+    fixed: 뷰포트(브라우저)를 기준
+    
+    <position과 같이 사용하는 방향속성들:음수 가능>
+      top, bottom, left, right, z-index(중요)
+ -->
+ <div class="wrap">
+    <div class="container">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </div>
+</body>
+</html>

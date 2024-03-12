@@ -1,0 +1,23 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        //실행되지 않는다. 
+        //해결1: ready함수에 포함시킨다.
+        //해결2: body 아래부분에 script를 이동한다.
+        $(function() {
+            $('#btn').click(function() {
+                $('#result').append("내용추가<br>");
+            });
+            $('#result').html("새로 쓰기<br>");
+        }); /*click end*/
+    </script>
+
+</head>
+
+<body>
+    <div id="result"></div>
+    <button id="btn">추가</button>
+</body>
+
+</html>

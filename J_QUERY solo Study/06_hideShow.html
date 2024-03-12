@@ -1,0 +1,104 @@
+﻿<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<style>
+		div{
+			background-color:green;
+			width:100px;
+			padding: 10px;
+			text-align:center;
+		}
+		</style>
+	</head>
+	<body>
+		<div>메뉴1</div>
+		<ul>
+			<li>LIST 01</li>
+			<li>LIST 02</li>
+			<li>LIST 03</li>
+			<li>LIST 04</li>
+			<li>LIST 05</li>
+		</ul>
+		<button id="toggle">토글버튼</button>
+		<button id="onOff">OFF</button>
+		<p>LIST 01</p>
+		<p>LIST 02</p>
+		<p>LIST 03</p>
+		<p>LIST 04</p>
+		<p>LIST 05</p>
+		<br>
+		<input id="onf" type="button" value="OFF"/>
+		
+	</body>
+	<script>
+		$(document).ready(function(){  
+            //문제: 위버튼 클릭시, ON이면 OFF으로 , OFF이면 ON로 바꾸시오( P태그 제어 )
+			$('#onf').click(function(){
+			let value=$(this).val()
+			if(value==='ON'){
+				$(this).val('OFF')
+				$('p').show(1000)
+			}else{
+				$(this).val('ON')
+				$('p').hide(1000)
+			}  
+		})
+			
+			//div에  hover시 리스트 제어		
+			$("ul").hide();
+			
+			$("div").hover(function(){
+				$("ul").show(1000);
+			},function(){
+				$("ul").hide(1000);
+			});
+			//위코드를 화살표 함수 사용시
+			//$('div').hover(() => $('ul').show(1000), () => $('ul').hide(1000));
+			
+			//display:none(영역자체가 사라짐), inline, block,inline-block, flex 등..
+			$("#onOff").click(function(){
+				let view = $("p").css("display");
+				console.log(view); //none, inline, block
+				if(view == "none"){
+					$("#onOff").text("OFF");
+					//$("p").css("display","block");
+					$('p').show()
+				}else{
+					$("#onOff").text("ON");
+					//$("p").css("display","none");
+					$('p').hide()
+				}
+			});
+			//visibility: hidden(컨텐츠만 사라짐),visible
+			$("#onOff").click(function(){
+				let view = $("p").css("visibility");
+				console.log(view); //hidden, visible
+				if(view == "hidden"){
+					$("#onOff").text("OFF");
+					$("p").css("visibility","visible");
+				}else{
+					$("#onOff").text("ON");
+					$("p").css("visibility","hidden");
+				}
+			});
+			$('#onOff').click(function(){
+			//버튼값을 기준으로 
+			//let view=$(this).html();
+			let view=$("#onOff").html();
+				console.log(view); //ON, OFF
+				if(view=="ON"){  //영역이 안보인다면
+					$("#onOff").text("OFF");
+					//$("p").css("display","block");
+					$('p').show()
+				}else {
+					$("#onOff").text("ON");
+					//$("p").css("display","none");
+					$('p').hide()
+				}
+			});
+			//toggle(): show()<-->hide()
+			$('#toggle').click(()=>$('p').toggle(1000));
+
+		});
+	</script>
+</html>

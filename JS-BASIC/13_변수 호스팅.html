@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const pi = 3.14 // 전역 상수변수
+        function fct1(){
+            // var a=undefined   로 호출
+            console.log("a: ",a);
+            console.log('b: ',b);
+            if(1){
+                var a = 30 , b = 40
+                console.log('a: ',a);
+                console.log('b: ',b);
+            }
+            console.log("a: ",a);
+            console.log('b: ',b);
+        }
+        fct1();
+
+
+        function test(show){
+            show();
+            // return show();
+            return show;
+        }
+        let re = test(function(){
+            console.log('함수 인자로 전달');
+            console.log('신기하다');
+        })
+        re();
+
+        const Arrow = () => ({str1 : '함수가 인자로 전달', str2 : '신기하다'});
+        console.log(Arrow().str1 , Arrow().str2);
+        
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

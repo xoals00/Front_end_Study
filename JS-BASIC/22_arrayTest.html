@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       
+    </script>
+</head>
+<body>
+    <input type="text" id="txt" placeholder="정수만"><br>
+    <h3>총점: </h3> <h3 id="total">총점출력위치</h3>
+    <br><hr>
+    <input type="button" value="배열에 저장" onclick="arrInput()">
+    <input type="button" value="배열요소 콘솔출력" onclick="arrOutput()">
+    <input type="button" value="배열요소 총합출력" onclick="showArrSum()">
+
+    <script>
+        let arr = []; //3개의 함수의 전역변수
+        function arrInput(){
+            let sum = document.getElementById('txt').value;
+            arr.push(sum);
+           console.log(sum+' :입력완료');
+    }
+        function arrOutput(){
+            for(let idx in arr){
+                console.log('입력된 점수: '+ arr[idx]);
+            }
+    }
+
+    function showArrSum(){
+        let total = document.getElementById('total')
+        let arrtotal = 0;
+        let sum = 0;
+    //     for(let num in arr) {
+    //     number = parseInt(arr[num], 10); // 10진법으로 해석
+    //     if(!isNaN(number)) {
+    //         totalNum += number;
+    //     }
+    // }
+        for(let idx of arr){
+            // console.log(arr[idx]);
+            sum = parseInt(idx , arr);
+            arrtotal += sum;    
+        }
+        
+        console.log("총합: "+arrtotal);
+        total.innerHTML = arrtotal
+    }
+        
+        
+       
+    </script>
+</body>
+</html>

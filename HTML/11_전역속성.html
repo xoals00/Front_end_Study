@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/main.css" />
+  <script defer src="js/main.js"> </script>
+</head>
+<body>
+  
+  <!-- 전역 속성: 
+  title:요소의 정보나 설명을 지정
+  style: 요소에 적용할 스타일(CSS)를 지정
+  class: 요소를 지칭하는 중복 가능한 이름
+  id: 요소를 지칭하는 고유한 이름
+  data-이름: 요소에 특정 데이터를 지정   -->
+  <a href="https://www.naver.com" title="네이버로 이동">네이버</a>
+  <p style="border:1px solid blue;">
+    <b class="abc">동해물</b>과 
+	<span class="abc">백두산</span>이
+	마르고 닳도록 하느님이 보우하사 
+	<span id="red">우리나라</span>만세 
+	<!-- <span id="red">대한민국</span>만세  -->
+  <div data-fruit-name="apple">사과</div>
+  <div data-fruit-name="banana">바나나</div>
+</p>
+ <script>
+    // let els = document.querySelectorAll('.abc'); // 클래스가 abc인 모든 엘리먼트
+    // let els = document.querySelector('#red');    // 아이디가 red인 첫번째 엘리먼트 
+    let els = document.querySelectorAll('div');  // tag가 div인 모든 엘리먼트 ALL이 없는경우 첫번째 검색 
+    // console.log(els);
+    // console.log(els[0].dataset.fruitName);
+    // console.log(els[1].dataset.fruitName);
+    // for(let i=0; i<els.length; i++){
+    //   console.log(els[i].dataset.fruitName);
+    // }; // 반복문으로 출력
+    
+  
+    
+    
+    // let els = document.getElementsByTagName('div');
+
+    // let abcElems=document.getElementsByClassName('abc');
+    // console.log(abcElems);
+    // let redElem=document.getElementById('red');
+    // console.log(redElem);
+  </script>
+  
+</body>
+</html>

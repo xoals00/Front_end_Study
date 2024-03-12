@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    
+    
+    
+    function fetchMovies(title) {
+      //-대기(pending):이행하거나 거부되지 않은 초기 상태
+      const OMDB_API_KEY = '7035c60c' //key가 틀리면 401(인증)에러
+      //1번
+      // return new Promise(async (resolve, reject) => { //async 위치 주의
+      //   const res = await axios.get(`https://www.omdbapi.com?apikey=${OMDB_API_KEY}&s=${title}`)
+      //   //console.log(res);
+      //   resolve(res) //인자 res는 await fetchMovies()호출의 리턴값
+      // }) //Promise End
+      //
+      //2번 예외처리 적용
+      return new Promise(async (resolve, reject) => { //async 위치 주의
+        try {
+          const res = await axios.get(`https://www.omdbapi.com?apikey=${OMDB_API_KEY}&s=${title}`)
+          //console.log(res);
+          //-이행(fulfilled):연산이 성공적으로 완료됨-> resolve호출됨
+          resolve(res) //인자 res는 await fetchMovies()호출의 리턴값
+        } catch (error) { //error=reject메소드 반환값
+          console.log(error.message);
+          //-거부(rejected):연산이 실패함->reject호출됨
+          //reject(error.message)
+          reject('error!!!')
+        }
+      }) //Promise End
+    } //fetchMovies End
+    //1번, axios.get()를 바로호출하지 않고 fetchMovies()를 정의하면 코드관리및 가독성이 좋아진다.
+    // function test() {
+    //   const res = fetchMovies('frozen') //await없이 호출시Promise 객체 반환
+    //   console.log(res); //Promise 객체 출력
+    // }
+    //test()
+    //2번
+    // async function test() {
+    //   const res = await fetchMovies('frozen') //res=영화데이터 리턴
+    //   console.log(res); //영화데이터 출력
+    // }
+    // test()
+    // async function hello() {
+    //    const res = await fetchMovies('jobs') //res=영화데이터 리턴
+    //    console.log(res); //영화데이터 출력
+    // }
+    // hello()
+    //3번 예외처리 적용, apikey 틀리게 설정후 실행해 볼것
+    async function test() {
+      try {
+        const res = await fetchMovies('frozen') //res=영화데이터 리턴
+        console.log(res); //영화데이터 출력
+      }catch(error){
+        console.log(error);
+      }
+    }
+    test()
+    function hello() {
+      fetchMovies('jobs')
+        .then(res => console.log(res))
+        .catch(error=>console.log(error))
+    }
+    hello()
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

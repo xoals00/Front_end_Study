@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* px, %, em(요소글꼴의 크기), rem(root(html)요소 글꼴의 크기), vw,vh)
+    0px==0%==0em==0rem==0  따라서 단위를 붙이지 않는다. */
+    html{
+      /* font-size: 16px; 브라우저 기본값 후손으로 상속됨*/
+    }
+    .parent{
+      width: 300px; 
+      height: 200px;
+      background-color: blue;
+      /* font-size: 10px; */
+    }
+    .child{
+      /* width: 200px; */
+      /* width: 50%; */
+      /* width: 20em;   글꼴크기*20  */
+      width: 20rem;   /*root(html)태그 글꼴크기*20  */
+      height: 100px;
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="child"></div>
+   </div> 
+</body>
+</html>

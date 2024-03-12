@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="border: 1px solid blue; width: 300px; height: 200px; "></div>
+    <script>
+        const divEl = document.querySelector('div');
+        // divEl.innerHTML = 'asdasd<br>asdasd';
+
+        let brEl = document.createElement('br');
+        divEl.appendChild(brEl);
+
+        // let text = document.createTextNode('aaaaaaaa')
+        // divEl.appendChild(text)
+
+        // 객체 생성, {},  new Object() // 객체는 순서대로 출력되지 않음 (배열은 순서대로)
+        let car = {brand:'audi',type:'auto', price:[200,300,400]}
+        // console.log(car);
+        
+        car.color = 'red';
+        // car['color'] = red;
+
+        let attr = 'color'
+        car[attr] = 'red'
+        car.type = 'stick'
+        
+        // console.log(car);
+        // console.log('my car: '+car.brand+'가격: '+car.price);
+        // console.log(`my car: ${car.brand}, 가격: ${car.price}`);
+        //배열 출력 for in, for of, forEach
+        //객체 출력 for in
+        for(let key in car){
+            if(key === 'price'){
+                console.log('가격표');
+                for(let p of car[key]){
+                    console.log(p+'원');
+                }
+            }
+            console.log(`${key}: ${car[key]}`);
+            // divEl.appendChild(content)
+            // divEl.appendChild(document.createElement('br'))
+            
+        }
+
+        for(let key in car){
+            if(key === 'price'){
+                for(let i in car[key]){
+                    content= document.createTextNode(`${parseInt(i)+1}번째 가격 ${car[key][i]}원`)
+                    divEl.appendChild(content)
+                    divEl.appendChild(document.createElement('br'))
+                }
+            }else{
+                content = document.createTextNode(key+': '+car[key])
+                divEl.appendChild(content)
+                divEl.appendChild(document.createElement('br'))
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* .fruits의 후손중에서 span가 첫자식이면 선택   */
+    /* .fruits span:first-child{
+      color:blue;
+    } */
+    /* .fruits의 후손중에서 div가 첫자식이면 선택(없음)  */
+    /* .fruits div:first-child{
+      color:red;
+    } */
+    /* .fruits의 후손중에서 h3가 마지막자식이면 선택  */
+    .fruits h3:last-child {
+      color: yellow;
+    }
+
+    /* .fruits의 후손중에서 2번째 자식이면 선택 */
+    .fruits *:nth-child(2) {
+      color: pink;
+    }
+
+    /* n은 0,1,2..., 짝수번째 선택, n2는 안됨 */
+    .fruits *:nth-child(2n) {
+      color: pink;
+    }
+
+    /* n은 0,1,2..., 홀수번째 선택*, 1+2n는 안됨/
+    .fruits *:nth-child(2n+1) {
+      color: pink;
+    }
+
+    /* n은 0,1,2..., 2번째 부터 선택*/
+    .fruits *:nth-child(n+2) {
+      color: pink;
+    }
+    /* .fruits의 후손중에서 span이 아닌 자식 선택(부정 선택자) */
+    .fruits *:not(span) {
+      color: chocolate;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <div class="fruits">
+    <span>딸기</span>
+    <span>수박</span>
+    <div>오렌지</div>
+    <p>망고</p>
+    <h3>사과</h3>
+  </div>
+
+</body>
+
+</html>

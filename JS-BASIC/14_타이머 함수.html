@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //타이머 함수 : JS 전역함수(어디서든 호출이 가능한 함수)
+        //setTimeout(함수, 시간): 일정 시간 후 함수실행
+        //setInterval(함수, 시간): 시간 간격바다 함수 실행
+        //clearTimeout(): 설정된 Timeout 함수를 종료
+        //clearInterval(): 설정된 Interval 함수를 종료
+ 
+
+        //
+        
+    </script>
+</head>
+<body>
+    <h1>Hello world!</h1>
+    <script>
+        // let timer = setTimeout(function(){ 
+        //     console.log('hello')
+        // },3000);
+        let timer = setInterval(()=> console.log('hello'),3000);
+
+        console.log('타이머 시작');
+
+        const h1Elem = document.querySelector('h1');
+        h1Elem.addEventListener('click',()=>{
+            // 핸들러(조작하는 함수)
+            // clearTimeout(timer)
+            clearInterval(timer)
+            console.log('멈춤 확인');
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<ol>
+		  <li>List item 1</li>
+		</ol>
+		<button id="apnd">Append</button>
+		<button id="ppnd">Prepend</button>
+		<button id="bef">before</button>
+		<button id="aft">after</button>
+		<button id="create">Create</button>
+	</body>
+	<script>
+	  $("#create").click(function(){
+            
+      //<input type="text" value="aaa" readonly disabled>  생성해서 body태그에 자식으로 추가
+      let $InputEl=$('<input type="text">')
+      //console.log($InputEl);
+      //$InputEl.appendTo('body').prop('disabled',true))
+      $('body').append($InputEl);
+	  //동적으로 속성 설정
+      $InputEl.prop('readonly',true).val('aaa').prop('disabled',true)
+      });
+		
+		var i =1;
+		
+		$("#apnd").click(function(){
+			i++;
+			$("ol").append("<li>List item "+i+"</li>");	
+            //$("<li>List item "+i+"</li>").appendTo("ol");			
+		});
+		$("#ppnd").click(function(){
+			i++;
+			$("ol").prepend("<li>List item "+i+"</li>");
+			//$("<li>List item "+i+"</li>").prependTo("ol");
+		});
+		$("#bef").click(function(){
+			i++;
+			$("ol").before("<li>List item "+i+"</li>");				
+		});
+		$("#aft").click(function(){
+			i++;
+			$("ol").after("<li>List item "+i+"</li>");				
+		});
+	</script>
+</html>

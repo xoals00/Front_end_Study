@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .ancestors * {
+            display: block;
+            border: 2px solid gray;
+            color: black;
+            padding: 5px;
+            margin: 15px;
+        }
+
+        .selector {
+            color: red;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ancestors">
+        <div class="parents" style="width:500px;">
+            div(.parents)
+            <ul>ul
+                <li>li
+                    <span class="first">span</span>
+                </li>
+            </ul>
+        </div>
+        <div class="parents" style="width:500px;">
+            div(.parents)
+            <p>p
+                <span class="second">span</span>
+            </p>
+        </div>
+    </div>
+    <button id="child">자식찾기</button>
+    <button id="find">span 찾기</button>
+    <button id="findAll">자식 전체 찾기</button>
+</body>
+<script>
+    $('#child').click(function () {
+        //직계자식의 태그명을 몰라도 됨
+        //$('.parents').children().addClass('selector');//가독성 좋음
+        //$('.parents>').addClass('selector');
+        //직계자식의 태그명을 알아야 됨
+        $('.parents>ul').addClass('selector');
+        //$('.parents>p').addClass('selector');
+    });
+    $('#find').click(function () {
+        //let $elem = $('span'); //jQ 객체
+        //$('.parents').find($elem).addClass('selector');
+        $('.parents').find('span').addClass('selector'); //가독성 좋음
+        //$('.parents span').addClass('selector');
+    });
+
+    $('#findAll').click(function () {
+        //$('.parents').find('*').addClass('selector');
+        $('.parents *').addClass('selector');
+    });
+</script>
+
+</html>

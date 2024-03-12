@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<style>
+			.ancestors * { 
+				display: block;
+				border: 2px solid gray;
+				color: black;
+				padding: 5px;
+				margin: 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ancestors">
+		  <div style="width:500px;">div (great-grandparent)
+			<ul>ul (grandparent)  
+			  <li>li (direct parent)
+				<span>span</span>
+			  </li>
+			</ul>   
+		  </div>
+
+		  <div style="width:500px;">div (grandparent)   
+			<p>p (direct parent)
+				<span>span</span>
+			</p> 
+		  </div>
+		</div>
+		<button id="parent">부모선택</button>
+		<button id="parents">상위요소선택</button>
+		<button id="until">...까지선택</button>
+	</body>
+	<script>
+		$("#parent").click(function(){
+			$("span").parent().css({
+				"color": "red", "border": "2px solid red"
+			});
+			setTimeout(function(){
+				turnBack();
+			}, 3000);			
+		});
+		
+		$("#parents").click(function(){
+			$("span").parents().css({
+				"color": "red", "border": "2px solid red"
+			});
+			setTimeout(function(){
+				turnBack();
+			}, 3000);			
+		});	
+		
+		//div 를 할 경우 위로 올라 가면서 제일 먼저 만나는 div 까지 until
+		$("#until").click(function(){
+			$("span").parentsUntil(".ancestors").css({
+				"color": "red", "border": "2px solid red"
+			});
+			setTimeout(function(){
+				turnBack();
+			}, 3000);			
+		});	
+		
+		function turnBack(){
+		   //F5효과
+		   //window.location.reload();
+			window.location.href = "21_ancestors.html";
+		}
+
+	</script>
+</html>

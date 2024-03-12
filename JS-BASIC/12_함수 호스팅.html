@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //호스팅(Hoisting)
+        //함수 선언부가 유호범위 최상단으로 끄러올려지는 현상
+        function double(){}
+        const a = 7;
+        double()
+        // square()
+        function double(){
+            console.log(a*2);
+        }
+        const square = function(){ // 익명함수는 호스팅 불가.
+            console.log(a*a);
+        }
+        square()
+        const Arrow = () => console.log(a*a);
+        Arrow()
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

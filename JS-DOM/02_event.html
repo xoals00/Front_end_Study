@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+    <script>
+        
+        function getDay(){
+            document.querySelector('#demo').innerHTML=Date()
+        }
+        function MouseEvent(msg){
+            if(msg=='over')
+            document.getElementById('over').innerHTML='mover over!'
+            if(msg=='out')
+            document.getElementByIdz('over').innerHTML = 'mover out!'
+        }
+        function FocusEvent(msg){
+            console.log(msg);
+            document.querySelector('#keyOn').style.backgroundColor='pink'
+        }
+        function change(){
+            // document.getElementById('typing').innerHTML = msg
+            const msg=document.getElementById('keyOn').value
+            const h4El = document.getElementById('typing')
+            const textNode = document.createTextNode(msg)
+            h4El.appendChild(textNode)
+            h4El.appendChild(document.createElement('br'))
+            
+        }
+        function going(){
+            const msg=document.getElementById('keyOn').value
+            const h4El = document.getElementById('typing')
+            h4El.innerHTML = msg
+        }
+    </script>
+</head>
+<body onload="alert('웹페이지가 화면에 렌더링(표현) 후 호출')">
+    <select name="car" id="mySelect" onchange="myFunction()">
+        <option value="Audi">Audi</option>
+        <option value="BMW">BMW</option>
+        <option value="Kia">Kia</option>
+        <option value="Benz">Benz</option>
+    </select>
+    <!-- <button onclick="getDay()">날짜 추출</button>     -->
+    <input id="keyOn" type="text" onfocus="FocusEvent('focus')"
+                                onblur="FocusEvent('blur')"
+                                onchange="change()"
+                                onkeydown="going()">
+    <h4 id="typing"> </h4>
+    <h3>오늘의 날짜: <span id="demo"></span> </h3>
+    <div id="over" onmouseover="MouseEvent('over')"
+    onmouseout="MouseEvent('out')">
+                    
+    </div>
+</body>
+</html>

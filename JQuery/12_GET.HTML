@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <input type="text" value="some text"/>
+        <p>문자가 쓰여진<b>강조된</b> 영역</p>
+        <span id="txt"></span>
+        <span id="html"></span>
+        <fieldset>
+            <legend>숫자 입력</legend>
+            RANGE(0~100) :
+            <input id="point" type="range" min="0" max="100" value="50" step="1">
+            당신이 선택한 값 : 
+            <span id="msg"></span>
+            <br>
+            <button id="inc">증가</button>
+            <button id="dec">감소</button>
+        </fieldset>
+        <fieldset>
+            <legend>라디오버튼</legend>
+            <div>                
+                <input name="front" type="radio" value="HTML"/>
+                HTML
+            </div>
+            <div>                
+                <input name="front" type="radio" value="CSS"/>
+                CSS
+            </div>
+            <div>                
+                <input name="front" type="radio" value="JS"/>
+                JS
+            </div>   
+            <span id="selected">선택값 없음</span>
+        </fieldset>
+        <script>
+            let $radio = $(':radio')
+            $radio.click(function(){
+                let val=$(this).val()
+                $('#selected').html('당신의 선택은'+val)
+            })
+            let i = $('#point').val()
+            $('#point').change(function(){ //드래그에 따라 값 변화
+                i=('#msg').val();
+                $('#msg').text(i)
+            })
+
+            
+            $('#inc').click(function(){
+                i++
+                $('#point').val(i)
+                $('#msg').val(i)
+            })
+            $('#dec').click(function(){
+                i--
+                $('#point').val(i)
+                $('#msg').val(i)
+            })
+
+            let attr = $('input').attr('type')
+            console.log(attr);
+            
+            let val = $('input').val()
+            console.log(val);
+
+            // if(attr==='text'){
+            // //    $('input').attr('type','password')
+            //     // $('input').attr('disabled',true) // 비추
+            //     // console.log($('input').attr('disabled'))
+            // }
+
+            let txt = $("p").text();
+            let html = $("p").html();
+                console.log(txt);
+                console.log(html);
+             $("#txt").text("<h1>HTML 과 TEXT 차이</h1>");
+             $("#html").html("<h1>HTML 과 TEXT 차이</h1>");
+        </script>
+</body>
+</html>

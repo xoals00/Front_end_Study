@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend>text & password & hidden & button</legend>
+        <form action="acces" method="post">
+        아이디: <input type="text"id ="id" name="userId" value="aaa" ><br>
+        비밀번호: <input type="password" id="pw" name="userPw" ><br>
+        hidden : <input type="hidden" name="point" value="100"><br>
+        <input type="submit" value="로그인">
+        <button>서버 전송</button>
+        <input type="button" value="그냥 버튼" onclick="alert('경고창')">
+        <input type="button" onclick="sohwIdPw()" value="아이디,비번출력">
+        </form>
+    </fieldset>
+    <script>
+        //java script  함수
+    function sohwIdPw(){
+        //alert("아이디를 입력하세요.")
+        let idElem = document.getElementById('id');
+        // console.log('idElem: '+idElem);
+        console.log('idElem: ',idElem);
+        let pw = document.getElementById('pw').value;
+        console.log('pw: ',pw);
+        console.log('pw: '+pw);
+    }        
+    </script>
+    <fieldset>
+        <legend>chekbox & radio & label</legend>
+        <label for="apple">
+        <input id="apple"type="checkbox" value="사과">Apple</label>
+        <label for="banana">
+        <input id="banana"type="checkbox" value="바나나">Banana</label><br>
+        성별: <input type="radio" name="gender" value="male">남자
+        <input type="radio" name="gender" value="female" checked>여자
+    </fieldset>
+
+    <fieldset>
+        <legend>file</legend>
+        <input type="file" name="attach">
+    </fieldset>
+
+    <fieldset>
+        <select name="cars">
+            <option value="--">--</option>
+            <option value="volvo">볼보</option>
+            <option value="kia">기아</option>
+            <option value="porshe">포르쉐</option>
+            <option value="benz">벤츠</option>
+        </select>
+    </fieldset>
+    <input type="datetime-local" >
+
+    <fieldset>
+        <legend>e-mail & url</legend>
+        <form action="test">
+        email : <input type="email"><br>
+        url : <input type="url"><br>
+        <input type="submit" value="전송">
+    </form>
+    </fieldset>
+
+    <script>
+        
+        let write = document.getElementById('write');
+        
+        write.addEventListener('click', function() {
+            location.href = "/write"
+        })
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const pi=3.141592
+    console.log(pi)
+
+    const str=pi.toFixed(2)  //'3.14'문자열 반환
+    console.log(str)
+    console.log(typeof str);
+    //window객체 전역함수 parseInt, parseFloat(권장)
+    const integer = parseInt(str)
+    const float = parseFloat(str)
+	//number객체 static 함수: parseInt, parseFloat(비권장)
+	//const integer=Number.parseInt(str)
+    //const float= Number.parseFloat(str)
+    console.log(integer)  //3
+    console.log(float)    //3.14 
+    console.log(typeof integer, typeof float) //number  number
+    //Math: 수학관련 객체
+    console.log('abs: ', Math.abs(-12))  //12
+    console.log('min: ', Math.min(2,8,5,6))  //2
+    console.log('max: ', Math.max(2,8,5,6))  //8
+    console.log('ceil: ', Math.ceil(3.14)) //4, 올림함수
+    console.log('floor: ', Math.floor(3.14)) //3, 절삭함수
+    console.log('round: ', Math.round(3.14)) //3, 반올림함수
+    console.log('random: ', Math.random())   //0.0~1.0미만 랜덤함수
+    const rand=Math.floor(Math.random() * 10)
+    console.log(rand)  //0~9사이 난수 발생
+  </script>
+</body>
+</html>

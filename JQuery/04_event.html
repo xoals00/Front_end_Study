@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.7.1.js"></script>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            margin-right: 7px;
+            text-align: center;
+        }
+        #mousezone {
+            background-color: #59b1f6;
+            float: left;
+        }
+        #overzone {
+            background-color: #ffb5b4;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">이벤트 제거</button>
+    <p id="1">클릭하면 글자 색상이 바뀌어요~!</p>
+    <p id="2">클릭하면 글자 색상이 바뀌어요~!</p>
+    <p id="3">클릭하면 글자 색상이 바뀌어요~!</p>
+    <p id="4">클릭하면 글자 색상이 바뀌어요~!</p>
+    <div id="mousezone">마우스 존</div>
+    <div id="overzone">H 오버 존</div>
+    <input type="text" placeholder="아이디">
+    <input type="password" placeholder="비밀번호">
+    <script>
+        $('#mousezone').hover(function(){
+            $(this).html('마우스가 들어왔음')
+            $(this).css('background-color','red')
+        },function(){
+            $(this).html('마우스가 나갔음')
+            $(this).css('background-color','yellow')
+        })
+
+        // $('#mousezone').mouseenter(function(){
+        //     $(this).html('마우스가 들어왔음')
+        //     $(this).css('background-color','red')
+        // })
+        // $('#mousezone').mouseleave(function(){
+        //     $(this).html('마우스가 나갔음')
+        //     $(this).css('background-color','yellow')
+        // })
+        // $('p').dblclick(function(){})
+        $('p').click(function(evt){
+            console.log(evt);
+            console.log(this);
+            console.log($(this));
+            $(this).css('color','blue')
+        })
+        $('input').focus(function(){
+            $(this).css('background-color','yellow')
+        })
+    </script>
+</body>
+</html>

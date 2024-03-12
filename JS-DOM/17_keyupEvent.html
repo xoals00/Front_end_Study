@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    당신이 입력한 값 : <span></span>
+    <br>
+    <input type="text" letue="" onkeyup="keyEvt()"/><span>(0자 입력)</span>
+</body>
+<script>
+    //요소 추출
+    let msg = document.getElementsByTagName("span");
+    let txt = document.getElementsByTagName("input");
+    
+    function keyEvt(){
+        //태그에 value속성이 없으므로 null 반환
+        //let val = txt[0].getAttribute('value'); //정적인 입력값 반영 
+        let val = txt[0].value;//동적인 입력값 반영	
+
+        
+        if(val.length>=0 && val.length<5){
+            msg[1].style.color="black";
+        }
+        
+        if(val.length>=5 && val.length<=10){
+           msg[1].style.color="orange";
+        }
+        
+        if(val.length>10){	
+            val=val.slice(0, 10)   //0~10미만, (0,-1):0~맨뒤1문자미만까지)
+            //val=val.substring(0,10)   //0~10미만, 음수인자 사용못함 
+            alert("더 이상 입력 할 수 없습니다.");
+            msg[1].style.color="red";
+            txt[0].value = val;
+        }	
+        msg[0].innerHTML=val;
+        msg[1].innerHTML=`(${val.length}자 입력)`			
+    }
+    </script>
+    

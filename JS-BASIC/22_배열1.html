@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const numbers = [1,2,3,4];
+        const fruits = ['apple', 'banana', 'cherry'];
+        // fruits[3] = 'mango';
+        // fruits[fruits.length]='mango';
+        fruits.push('mango')
+
+        // concat() : 2개의 배열데이터 병합
+        console.log(numbers.concat(fruits));
+        
+        console.log(numbers); // 원본 변화 없음
+        console.log(fruits);
+        fruits.forEach((fruit, i)=>
+        console.log(`${i+1}번째-${fruit}`)
+        )
+        //map(): 배열의
+        
+        const b = fruits.map(function(fruit, idx){
+            return `${fruit}-${idx}`
+            // return
+        })
+        console.log(b);
+        
+        const c = fruits.map((fruit,idx) => `${fruit}-${idx}`)
+        console.log(c);
+
+        const d = fruits.map(function(fruit , idx){
+            return {id:idx, name:fruit} //js 객체
+        })
+        console.log(d);
+
+        const e = fruits.map((fruit , idx) =>
+            ({id:idx, name:fruit})
+        )
+        console.log(e);
+        // for(let idx in fruits){
+        //     console.log(fruits[idx]);
+        // }
+        // console.log('----------------');
+        // for(let item of fruits){
+        //     console.log(item);
+        // }
+        // console.log('----------------');
+        // fruits.forEach(function(item,idx){
+        //     console.log(idx+': '+item);
+        // })
+        // console.log('----------------');
+        // fruits.forEach((item,idx)=> console.log(idx+': '+item))
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

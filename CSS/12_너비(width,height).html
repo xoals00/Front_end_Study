@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+     /* div의 기본값: width:auto; 브라우저 너비만큼 
+        div의 기본값: height:auto; 컨텐츠 높이만큼 */
+     /* div{
+      width: 100px;
+      height: 100px;
+      background-color: orange; 
+    }  */
+
+    /* span의 기본값: width:auto; 컨텐츠(글자) 너비만큼 
+       span의 기본값: height:auto; 기본값: 컨텐츠(글자) 높이만큼
+       span은 보통 글자를 제어하므로 width, height적용되지 않음*/
+    /* span{
+       width: 100px; 
+      height: 100px;
+      background-color: aqua; 
+    }*/
+
+    /**** 위의 div css 주석후 실행 ****/
+    .parent{
+      /* 자식에서 max width 설정시 부모width는 auto 또는 크게 설정할것*/
+      width:auto; 
+      /* 자식에서 min width 설정시 부모width는 작게 설정할것*/
+      /* width: 300px;  */
+      height: 200px;
+      background-color: blue;
+    } 
+    /*자식 div가 위로 배치됨*/
+    .child{
+      /*max(min)-width설정시 삭제 또는 width:auto로 설정*/
+      /* width: 300px; */
+      /*부모 너비(높이)를 벗어나지 않음, 기본값: none */
+      max-width: 500px ;
+      /*부모 너비(높이)를 벗어날 수 있음, 기본값: 0 */
+      /* min-width: 400px; */
+      height: 100px;
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+ <div>DIV</div>
+ <span>SPAN</span>
+ <span>SPAN</span>
+ <hr>
+ <div class="parent">
+  <div class="child"></div>
+ </div> 
+
+</body>
+</html>

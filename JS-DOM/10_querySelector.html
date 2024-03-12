@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <p>쿼리 셀렉터는 css의 셀렉터를 차용한 것이다.</p>
+    <p class="ex">하지만 복수개의 엘리먼트를 수용하지 못함.</p>
+    <span id="sample">span Tag</span>
+    <div>
+        <p>특정 요소의 자식 요소를 선택 가능</p>
+    </div>
+    <a href="https://www.naver.com" target="_blank">네이버</a>
+    <br>
+    <a href="https://www.naver.com" target="_blank">네이버</a>
+
+    <button> p태그</button>
+    <button> p의 ex클래스</button>
+    <button> 아이디</button>
+    <br>
+    <button> 자식요소</button>
+    <button> 속성</button>
+    
+    <script>
+        let btns = document.querySelectorAll('button')
+        console.log(btns);
+        btns[0].addEventListener('click', function(){
+            document.querySelector('p').style.backgroundColor = 'red';
+        })
+        btns[1].addEventListener('click', function(){
+            document.querySelector('p.ex').style.backgroundColor = 'blue';
+        })
+        btns[2].addEventListener('click', function(){
+            document.querySelector('#sample').innerHTML = '하나의 아이디 검색';
+        })
+        btns[3].addEventListener('click', function(){
+            document.querySelector('div p').innerHTML = '동해물과 백두산이';
+        })
+        // btns[4].addEventListener('click', function(){
+        //     document.querySelector('[target="_blank"]').style.border = '5px solid red';
+        // })
+        btns[4].addEventListener('click', function(){
+            let aEls = document.querySelectorAll('[target="_blank"]')
+            // for(let elem of aEls){
+            //     elem.style.border = '5px solid red'
+            // }
+            aEls.forEach(elem=>{
+                elem.style.border = '5px solid red';
+            })
+            
+        })
+    </script>
+</body>
+</html>

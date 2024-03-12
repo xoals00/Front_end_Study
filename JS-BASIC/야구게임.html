@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="strike">Strike</button>
+    <button id="ball">Ball</button>
+    <button id="restart" style="display:none">
+        재시작
+    </button>
+    <br />
+    B:<b id="b">0</b><br />
+    S:<b id="s">0</b><br />  
+    O:<b id="o">0</b><br />
+    <script>
+        //1. 버튼에 클릭 이벤트 부여
+        //2. 버튼 클릭시 정상 작동 여부
+        //3. 4볼일때 정상적으로 초기화 되는가?
+        //4. 3 스트라이크 일 때 정상적으로 초기화 되는가?(out +1)
+        //5. 3아웃을 때 게임이 종료 되는가?(재시작버튼 보임)
+        //6. 재시작 버튼 클릭시 초기화 되는가?
+        let sbut = document.getElementById('strike')
+        let bbut = document.getElementById('ball')
+        let rebut = document.getElementById('restart')
+
+        let scount = document.getElementById('s');
+        let bcount = document.getElementById('b');
+        let ocount = document.getElementById('o');
+
+        sbut.addEventListener('click', () => {
+            scount.innerHTML++
+            if (scount.innerHTML == 3) {
+                alert('스트라이크 아웃!!!')
+                scount.innerHTML -= 3
+                ocount.innerHTML++
+                if (ocount.innerHTML == 3) {
+                    alert('3아웃 이닝 종료!')
+                    rebut.style.display = 'inline';
+                    rebut.addEventListener('click', () => {
+                        alert('재시작 되었습니다')
+                        scount.innerHTML = 0
+                        bcount.innerHTML = 0
+                        ocount.innerHTML = 0
+                        rebut.style.display = 'none';
+                    })
+                }
+            }
+        })
+        bbut.addEventListener('click', () => {
+            bcount.innerHTML++
+            if (bcount.innerHTML == 4) {
+                alert('볼넷 진루~~~')
+                bcount.innerHTML -= 4,
+                    scount.innerHTML = 0
+            }
+        })
+    </script>
+</body>
+
+</html>

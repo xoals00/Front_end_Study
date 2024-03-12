@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 속성 선택자 */
+    [disabled]{
+      color: red;
+    }
+    [type]{
+      color: blue;
+    }
+    /*따옴표 쓰는 것을 권장 */
+    [type="password"]{
+      color: aqua;
+    }
+    /*data속성 선택자 */
+    [data-fruit-name]{
+      color: coral;
+    }
+    button,[type="button"]{
+    color: brown;
+  }
+  </style>
+</head>
+<body>
+  <input type="text" value="cha">
+  <input type="password" value="1234">
+  <input type="text" value="ABCD" disabled>
+  <span data-fruit-name="apple">사과</span>
+  <button>btn1</button>
+  <input type="button" value="btn2">
+</body>
+</html>

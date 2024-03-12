@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    //var: 함수레벨 scope, 의도하지 않는 범위에서 사용될수 있다.메모리누수
+    //let, const: 블록레벨 scope
+    function scope(){
+      //console.log(a)  // let,const: not defined에러, var: undefined출력
+      if(true){
+        //console.log(a)  // let,const: not defined에러, var: undefined출력
+        var a =123
+        //console.log(a)   //모두 정상
+      }
+      console.log(a)  //let,const: not defined에러, var: 123
+    }
+    scope()
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

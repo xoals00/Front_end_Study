@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+    crossorigin="anonymous"></script>
+  <script>
+    $(function () {
+      //fetchMovies()
+    }) //ready End
+  </script>
+
+</head>
+
+<body>
+  <h1>영화 제목1</h1>
+  <img src="" alt="" width="200">
+  <h1>영화 제목2</h1>
+  <img src="" alt="" width="200">
+  <script>
+    function fetchMovies() {
+      const $h1Els = $('h1')
+      const $imgEls = $('img')
+      //https요청해야 문제가 발생하지 않음
+      $.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+        .done(res => { //then(done콜백, faile콜백)도 가능
+          console.log('1:', res)
+          $h1Els[0].textContent = res.Search[0].Title
+          $imgEls[0].src = res.Search[0].Poster
+        })
+        .fail(error => console.log('1', error))
+    }
+    //fetchMovies()
+
+    //콜백 지옥(callback hell)
+    function fetchMovies1() {
+      const $h1Els = $('h1')
+      const $imgEls = $('img')
+      $.ajax({
+        method: 'get', //1.9이전버전은 type사용
+        //url: 'https://www.omdbapi.com?apikey=7035c60c&s=frozen'
+        url: 'https://www.omdbapi.com',
+        data: { //get, post 등 모든 쿼리스트링 포함한 모든 data 
+          apikey: '7035c60c',
+          s: 'frozen'
+        },
+        //dataType: 'json', //json,html(text),xml, jsonp(cross-domain이슈회피)
+        //생략하면 서버의 mime(인터넷 미디어 타입)유형을 기반으로 유추 
+      }).done(res => {
+        console.log(res)
+        $h1Els[0].textContent = res.Search[0].Title
+        $imgEls[0].src = res.Search[0].Poster
+        //위 비동기통신 결과값 res를 아래 비동기통신에서 활용할수 있다.
+        $.ajax({
+          method: 'get',
+          //url: 'https://www.omdbapi.com?apikey=7035c60c&s=frozen'
+          url: 'https://www.omdbapi.com',
+          data: { //get방식의 쿼리스트링, 즉 url 파라미터 
+            apikey: '7035c60c',
+            s: 'jobs'
+          },
+          //dataType: 'json', //json(기본값), text, blob(이미지,사운드,비디오와 같은 멀티미디어 데이터)... 
+        }).done(res => {
+          console.log(res)
+          $h1Els[1].textContent = res.Search[0].Title
+          $imgEls[1].src = res.Search[0].Poster
+        }).fail(error => console.log('inner error', error))
+      }).fail(error => console.log('outer error', error))
+    } //fetchMovies End
+    //fetchMovies1()
+    //----------------------------
+    //async await로 콜백지옥 해결하기
+    async function fetchMovies2() {
+      const $h1Els = $('h1')
+      const $imgEls = $('img')
+      //await를 생략하면 서버에서 완료된 data가 아닌 Deffered(Promise)객체를 반환한다(주의)
+      let res = await $.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+      console.log('1:', res);
+      $h1Els[0].textContent = res.Search[0].Title
+      $imgEls[0].src = res.Search[0].Poster
+
+      res = await $.get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs')
+      console.log('2:', res);
+      $h1Els[1].textContent = res.Search[0].Title
+      $imgEls[1].src = res.Search[0].Poster
+    }
+    //fetchMovies2()
+    // -------------------------------
+    //async, await , done, catch로 콜백지옥 해결하기
+    async function fetchMovies3() {
+      //const h1Els = document.querySelectorAll('h1')
+      //const imgEls = document.querySelectorAll('img')
+		const $h1Els = $('h1')
+      const $imgEls = $('img')
+      await $.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+        .done(res => {
+          console.log('1:', res);
+          $h1Els[0].textContent = res.Search[0].Title
+          $imgEls[0].src = res.Search[0].Poster
+        })
+        .fail(err => console.log('1:', err))
+
+      await $.get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs')
+        .done(res => {
+          console.log('1:', res);
+          $h1Els[1].textContent = res.Search[0].Title
+          $imgEls[1].src = res.Search[0].Poster
+        })
+        .fail(err => console.log('2:', err))
+    }
+    //fetchMovies3()
+    //--------------------------------
+    //async await 및 try catch로 콜백지옥 해결하기
+    async function fetchMovies4() {
+      const h1Els = document.querySelectorAll('h1')
+      const imgEls = document.querySelectorAll('img')
+      try {
+        let res = await $.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+        console.log('1:', res);
+        h1Els[0].textContent = res.Search[0].Title
+        imgEls[0].src = res.Search[0].Poster
+
+        res = await $.get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs')
+        console.log('2:', res);
+        h1Els[1].textContent = res.Search[0].Title
+        imgEls[1].src = res.Search[0].Poster
+      } catch (err) { //서버통신외 try내 모든 예외를 처리한다.(주의)
+        console.log('catch: ', err)
+      } finally {
+        console.log('항상 처리되는 영역');
+      }
+    }
+    //fetchMovies4()
+    //--------------------------------------
+    //위예제 함수로 정의하기
+    async function firstMovieFetch(h1Els, imgEls) {
+      const res = await $.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+      console.log('1:', res);
+      h1Els[0].textContent = res.Search[0].Title
+      imgEls[0].src = res.Search[0].Poster
+      return res //secondMovieFetch에 res값을 넘겨주기 위해
+    }
+    async function secondMovieFetch(h1Els, imgEls, res1) {
+      const res = await $.get('https://www.omdbapi.com/?apikey=7035c60c&s=jobs')
+      console.log('22:', res1);
+      console.log('2:', res);
+      h1Els[1].textContent = res.Search[0].Title
+      imgEls[1].src = res.Search[0].Poster
+    }
+    async function fetchMovies5() {
+      let h1Els = document.querySelectorAll('h1')
+      let imgEls = document.querySelectorAll('img')
+      try { //await를 생략하면 Promise객체가 반환되고, 
+        //firstMovieFetch가 완료되기전에 secondMovieFetch가 실행된다.(주의)
+        const res1 = await firstMovieFetch(h1Els, imgEls)
+        secondMovieFetch(h1Els, imgEls, res1) //await 붙여도 된다.
+      } catch (err) { //서버통신외 try내 모든 예외를 처리한다.(주의)
+        console.log('catch: ', err)
+        console.log('에러코드: ', err.status)
+        // if(err.status===401){
+        //   //401에러처리
+        // }else{
+        //   //기타에러처리
+        // }
+      }
+    }
+    fetchMovies5()
+  </script>
+</body>
+
+</html>

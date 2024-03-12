@@ -1,0 +1,60 @@
+﻿<html>
+    <head>
+        <meta charset="utf-8">
+        <title>J-Query</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			<style>
+		div{
+            display:none;
+        }
+        .ex {
+            background-color: cadetblue;
+            text-align: center;
+            width: 200px;
+            height: 200px;
+            display:block;
+        }
+            
+        </style>
+    </head>
+    <body>        
+        <button id="add">클래스 추가</button>
+        <button id="remove">클래스 삭제</button>
+        <button id="toggle">TOGGLE</button>
+		<div>DIV</div>
+    </body>
+    <script>
+        $("#add").click(function(){
+            $("div").addClass("ex"); //권장
+            //$("div").attr("class","ex");
+            
+        });
+        $("#remove").click(function(){
+            $("div").removeClass("ex");
+        });
+        $("#toggle").click(function(){
+            $("div").toggleClass("ex");
+            
+            var sw = $("div").hasClass("ex");
+            console.log(sw);
+            
+			if(sw == true){
+				$(this).text("OFF");
+			}else{
+				$(this).text("ON");
+			}
+            
+        });
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+

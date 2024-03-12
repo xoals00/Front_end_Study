@@ -1,0 +1,58 @@
+ul<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <ul>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+    </ul>
+	 <div style="border:1px solid blue;width:100px;height:100px">  </div>
+    <button id="btn">on</button>
+    <p>동해물과 백두산이 마르고 닳도록.......</p>
+</body>
+<script>
+    // 이벤트 대상 객체.on(event [,selector][,data],handler);
+    // 1.event: click...
+    // 2.selector: 이벤트 대상 요소의 자손을 선택
+    // 3.data: 핸들러에 전달할 데이터(모든 타입 가능)
+    // 4.handler: 이벤트 발생시 실행할 함수 
+    // 이벤트 바인드 개수가 li요소 개수만큼이다. 그래서 비효율적이다.
+    // $("ul li").click(function(){
+    //     $(this).css('color','red');
+    // });
+    //아래 코드는 ul태그 하나에 이벤트바인딩을 한다.
+    //하지만 하위 li요소에 대해 이벤트를 지정함.
+    $('ul').on('click','li', function () {
+         $('div').append('<button>click</button>');
+         $(this).css('color', 'red');
+    });
+
+        // $('button').click(function () { //이벤트 반응없음
+        //         alert("button");
+        // });
+   //특히, 나중에 생성한 엘리먼트는 on메소드를 이용해서 이벤트 등록
+        //넓은 선택자            좁은 선택자
+        $('div').on('click', 'button', function () {
+             alert("button");
+        });
+        //이벤트 핸들러 2개 이상일때
+        $('#btn').click(function(){
+            $('p').click(()=>alert('call fct1...'));
+            $('p').click(()=>alert('call fct2...'));
+        });
+
+</script>
+</html>
+
+
+
+
+
+

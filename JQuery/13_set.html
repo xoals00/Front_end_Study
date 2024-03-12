@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <p id="test1" class="aaa">문자열 1</p>
+    <p id="test2" >문자열 2</p>
+
+    <input id="txt" type="text" value="홍길동" >
+    
+    <input id="chk1" type="checkbox" value="music" checked>음악
+    <input id="chk2" type="checkbox" value="movie">영화
+    <a href="#">네이버</a>
+    <br>
+    <input type="button" onclick="check()" value="체크">
+    <button>버튼</button>
+    <script>
+        $('#chk2').prop('checked',true)
+        console.log($('#chk2').prop('checked'));
+
+        $('#txt').prop('disabled',true)
+        console.log($('#txt').prop('disabled'));
+
+        // $('#txt').attr('val')
+        $('#txt').val()
+    </script>
+</body>
+</html>

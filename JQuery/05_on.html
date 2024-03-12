@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <ul>
+        <li>aaa</li>
+        <li>bbb</li>
+        <li>ccc</li>
+        <li>ddd</li>
+    </ul>
+	 <div style="border:1px solid blue;width:100px;height:100px">  </div>
+    <button id="btn">on</button>
+    <p>동해물과 백두산이 마르고 닳도록.......</p>
+    <script>
+        // $('ul').on('click','li',function(){
+            $('li').click(function(){
+            $('div').append('<button>click<button>')
+            $(this).css('color','red')
+        })
+        $('div').on('click','button',function(){
+            alert('button')
+        })
+        // $('button').click(function(){
+        //     alert('button')
+        // })
+    </script>
+</body>
+</html>

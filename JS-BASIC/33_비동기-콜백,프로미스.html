@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <script>
+    //1.비동기 처리: B->A 출력됨
+    // function a() {
+    //   setTimeout(()=>{
+    //     console.log('A')
+    //   },1000)
+    // }
+    // function b(){
+    //   console.log('B')  
+    // }
+    // a()  //1초후 A가 출력됨
+    // b()  //B가 먼저 출력됨
+
+    //2.비동기 처리에서 A->B 순서로 출력을 보장하기 위해 콜백사용
+    // function a(callback) {
+    //   setTimeout(()=>{
+    //     console.log('A')   //1초뒤 A가 먼저출력
+    //     callback()         //B가 다음출력
+    //   },1000)
+    // }
+    // function b(){
+    //   console.log('B');  
+    // }
+    // a(function(){  //a함수호출실행후 콜백호출실행 보장
+    //   b()
+    // })
+
+    // 3.A->Hello A->B 순서로 출력을 보장하기 위해 콜백사용
+    // function a(callback) {
+    //   const str='Hello A'
+    //   setTimeout(()=>{
+    //     console.log('A')   //1. 1초뒤 A가 먼저출력
+    //     callback(str)      
+    //   },1000)
+    // }
+    // function b(){
+    //   console.log('B');    //3. B가 마지막 출력
+    // }
+    // a(function(event){  //아래 addEventListener 콜백과 같이 처리됨
+    //   console.log(event); //2. Hello A가 다음출력
+    //   b()
+    // })
+    // el.addEventListener('click', function(event){
+    //   console.log(event);
+    // })
+
+    // 4.A->B->C->D 출력보장위해 콜백지옥으로 구현
+    // function a(callback) {
+    //   setTimeout(()=>{
+    //     console.log('A')   //1. 1초뒤 A가 먼저출력
+    //     callback()      
+    //   },1000)
+    // }
+    // function b(callback) {
+    //   setTimeout(()=>{
+    //     console.log('B')   //1. 1초뒤 A가 먼저출력
+    //     callback()      
+    //   },1000)
+    // }
+    // function c(callback) {
+    //   setTimeout(()=>{
+    //     console.log('C')   //1. 1초뒤 A가 먼저출력
+    //     callback()      
+    //   },1000)
+    // }
+    // function d(callback) {
+    //   setTimeout(()=>{
+    //     console.log('D')   //1. 1초뒤 A가 먼저출력
+    //     callback()      
+    //   },1000)
+    // }  
+    // //콜백지옥: 가독성및 관리가 어렵다.
+    // a(function(){
+    //   b(function(){
+    //     c(function(){
+    //        d(function(){
+    //           console.log('Done!');
+    //        }) 
+    //     })
+    //   })
+    // })
+
+    //5.Promise객체로 콜백지옥 해결하기 
+    // function a() {
+    //   //promise: 약속(다음실행의 순서를 보장)의 객체!
+    //  resolve매개변수는 제일마지막 호출되는 함수이며 출력값을 리턴한다.  
+    //   return new Promise(function (resolve) {  
+    //     setTimeout(() => {
+    //       console.log('A') //1. A출력
+    //       resolve('Hello A')  //resolve의 인자 'Hello A'는 a메소드의 리턴값이 됨
+    //     }, 1000)
+    //   })
+    // }
+    // function b(){
+    //   console.log('B');
+    // }
+    // //test 비동기함수 
+    // async function test(){ //함수내에await가 있다면 async붙여야 됨
+    //  const res= await a() //a메소드를 호출하면 반환된 Promise객체의 resolve함수가 호출될때까지 wait
+    //  console.log('res',res)  //2. Hello A출력
+    //  //.get메소드 호출하면 반환된 Promise객체의 then의 콜백함수가 호출될 때까지 wait 
+    //  await axios.get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+    //              .then(res=>console.log(res))  //3. resolve메소드의 인자가 res에 저장됨
+    //  b()  //4. B출력
+    // }
+    // test()
+
+    //6. 콜백지옥없이 A->B->C->D 출력  
+    function a() {
+      //promise: 약속의 객체!
+      return new Promise(function (resolve) {
+        setTimeout(() => {
+          console.log('A') //1. A출력
+          resolve('Hello A')  //resolve의 인자 'Hello A'는 await a()메소드 리턴값이 됨
+        }, 1000)               //주의) await없이 a()호출시 Promise객체가 반환됨
+      })
+    }
+    function b() {
+      //promise: 약속의 객체!
+      return new Promise(function (resolve) {
+        setTimeout(() => {
+          console.log('B') //1. B출력
+          resolve('Hello B')  //resolve의 인자 'Hello B'는 b메소드의 리턴값이 됨
+        }, 1000)
+      })
+    }
+    function c() {
+      //promise: 약속의 객체!
+      return new Promise(function (resolve) {
+        setTimeout(() => {
+          console.log('C') //1. C출력
+          resolve('Hello C')  //resolve의 인자 'Hello C'는 c메소드의 리턴값이 됨
+        }, 1000)
+      })
+    }
+    function d() {
+      //promise: 약속의 객체!
+      return new Promise(function (resolve) {
+        setTimeout(() => {
+          console.log('D') //1. D출력
+          resolve('Hello D')  //resolve의 인자 'Hello D'는 d메소드의 리턴값이 됨
+        }, 1000)
+      })
+    }
+    //콜백지옥없이 비동기 함수 구현 
+    async function test(){
+      // await a()
+      // await b()
+      // await c()
+      // await d()
+      // console.log('Done!');
+      const h1=await a()
+      const h2=await b()
+      const h3=await c()
+      const h4=await d()
+      console.log('Done!');
+      console.log(h1,h2,h3,h4);
+    }
+    test()
+  </script>
+
+</body>
+
+</html>

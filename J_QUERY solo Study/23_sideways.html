@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<style>
+			.siblings * { 
+				display: block;
+				border: 2px solid lightgrey;
+				color: lightgrey;
+				padding: 5px;
+				margin: 15px;
+			}
+		</style>
+	</head>
+	<body>
+	<div class="siblings">div (parent)
+		<p>p</p>
+		<span>span</span>
+		<h2>h2</h2>
+		<h3>h3</h3>
+		<h4>h4</h4>
+		<h5>h5</h5>
+		<h6>h6</h6>
+		<p>p</p>
+	</div>
+		<button id="sib">sibling</button>
+		<button id="next">next</button>
+		<button id="nextAll">next all</button>
+		<button id="nextUntil">next until</button>
+	</body>
+	<script>
+		$("#sib").click(function(){
+			//h2 형제들 선택(본인빼고 모든 형제선택)
+			$("h2").siblings().css({
+				"color": "red", "border": "2px solid red"
+			});			
+			setTimeout(function(){
+				turnBack();
+			}, 3000);					
+		});	
+		
+		$("#next").click(function(){
+			$("h2").next().css({
+				"color": "red", "border": "2px solid red"
+			});			
+			setTimeout(function(){
+				turnBack();
+			}, 3000);					
+		});
+
+		$("#nextAll").click(function(){
+			$("h2").nextAll().css({
+				"color": "red", "border": "2px solid red"
+			});			
+			setTimeout(function(){
+				turnBack();
+			}, 3000);					
+		});		
+		
+		$("#nextUntil").click(function(){
+		   //h2~h6사이 (h2,h6 제외)
+			$("h2").nextUntil("h6").css({
+				"color": "red", "border": "2px solid red"
+			});			
+			setTimeout(function(){
+				turnBack();
+			}, 3000);					
+		});
+		
+		function turnBack(){
+			window.location.href = "23_sideways.html";
+		}
+	</script>
+
+</html>

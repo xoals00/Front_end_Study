@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <ol>
+        <li>List item 1</li>
+      </ol>
+      <button id="apnd">Append</button>
+      <button id="ppnd">Prepend</button>
+      <button id="bef">before</button>
+      <button id="aft">after</button>
+      <button id="create">Create</button>
+      <script>
+        $('#create').click(function(){
+           let $inputEl = $('<input type="text">')
+           $inputEl.attr('type','text').prop('disabled',true).prop('readonly',true).val('aaa')
+           $('body').appendTo($inputEl)
+        })
+        let i = 1
+        $('#apnd').click(function(){
+            i++
+            // $('ol').append('<li>List item'+i+'</li>')
+            $('<li>List item'+i+'</li>').appendTo('ol')
+        })
+        $('#ppnd').click(function(){
+            i++
+            // $('ol').prepend('<li>List item'+i+'</li>')
+            $('<li>List item'+i+'</li>').prependTo('ol')
+        })
+        $('#bef').click(function(){
+            i++
+            $('ol').before('<li>List item'+i+'</li>')
+        })
+        $('#aft').click(function(){
+            i++
+            $('ol').after('<li>List item'+i+'</li>')
+        })
+      </script>
+</body>
+</html>

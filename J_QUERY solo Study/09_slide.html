@@ -1,0 +1,51 @@
+﻿<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<style>
+		div{
+			padding: 5px;
+			text-align: center;
+			background-color: #e5eecc;
+			border: solid 1px #c3c3c3;
+		}
+		.panel {
+			padding: 50px;
+			display: none;
+		}
+
+		</style>
+	</head>
+	<body>
+		<div id="flip">클릭하면, 아래로 메뉴가 나타납니다.</div>
+		<div class="panel" id="p1">서브메뉴 입니다.</div>
+		<div id="flip2">토글 메뉴 입니다.</div>
+		<div class="panel" id="p2">서브메뉴 입니다.</div>
+	</body>
+	<script>
+		$("#flip").click(function(){
+			var vision =$("#p1").css("display");
+			if(vision == "none"){
+				$("#p1").slideDown("slow",function(){
+					$("#flip").text("클릭하면, 메뉴가 위로 올라 갑니다.");
+				});
+			}else{
+				$("#p1").slideUp("slow",function(){
+					$("#flip").text("클릭하면, 아래로 메뉴가 나타납니다.");
+				});
+			}			
+		});
+		
+		$("#flip2").click(function(){
+			$("#p2").slideToggle("fast",function(){
+				var vision =$("#p2").css("display");
+				console.log(vision);
+				if(vision == "none"){
+					$("#flip2").text("토글 - 다운");
+				}else{
+					$("#flip2").text("토글 - 업");
+				}
+				
+			});
+		})
+	</script>
+</html>

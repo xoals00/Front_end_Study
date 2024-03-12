@@ -1,0 +1,63 @@
+﻿<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <style>
+            img{
+                height: 300px;
+                width: 400px;
+                padding: 10px;
+                border: 3px solid black;
+                margin: 5px;                
+            }
+        </style>
+    </head>
+    <body>
+        <img src="demension.png"/>
+        <p id="msg"></p>
+        <p id="wsize"></p>
+        <button id="width">width()</button>
+        <button id="innerWidth">innerWidth()</button>
+        <button id="outerWidth">outerWidth()</button>
+        <button id="outerWidth2">outerWidth(true)</button>
+    </body>
+    <script>
+    /*
+    width():요소 크기
+    innerWidth():요소크기+padding
+    outerWidth():요소크기+padding+border
+    outerWidth(true):요소크기+padding+border+margin
+    */
+        
+        window.onresize = function(e){
+            console.log("window : "+$(window).width());
+            console.log("doc : "+$(document).width());
+        }        
+        
+        $("#width").click(function(){
+            $("#msg").html($("img").width());
+        });
+        
+        $("#innerWidth").click(function(){
+            $("#msg").html($("img").innerWidth());
+        });
+        
+        $("#outerWidth").click(function(){
+            $("#msg").html($("img").outerWidth());
+        });
+        
+        $("#outerWidth2").click(function(){
+            $("#msg").html($("img").outerWidth(true));
+        });
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+

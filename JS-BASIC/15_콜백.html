@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //콜백(callback) 함수
+        //함수의 인자로 사용하는 함수
+        //setTimeout(함수, 시간)
+        //
+        // function Timeout(){
+        //     setTimeout(()=>{
+        //         console.log('3초');
+        //     },3000)
+        // }
+        // Timeout()
+
+        function Timeout(cb){
+            setTimeout(()=>{
+                console.log('3초');
+                cb();
+            },3000)
+        }
+        Timeout(function(){console.log('끝');})
+
+        // 콜백 함수 사용 목적
+        // 1.익명함수가 timeout의 인자로 사용
+        // 2.timeout실행시 실행할 시점을 보장
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

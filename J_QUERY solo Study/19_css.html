@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<p id="ex1" style="color:blue; font-size:32px;">스타일이 적용된 텍스트</p>
+		<p id="ex2">스타일이 적용 안 된 텍스트</p>
+		<div>
+			폰트 사이즈 : <span id="size"></span><br>
+			폰트 color : <span id="color"></span><br>
+			<button>css 적용</button>
+		</div>
+	</body>
+	<script>
+		var size = $("#ex1").css("font-size");
+		var color = $("#ex1").css("color");
+		$("#size").text(size);
+		$("#color").text(color);	
+			
+		$("button").click(function(){
+			$("#ex2").css("color",color).css("font-size",size);			
+		});
+	</script>
+</html>

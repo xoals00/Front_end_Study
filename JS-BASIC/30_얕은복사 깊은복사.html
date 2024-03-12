@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // a=b 얕은 복사(Shallow copy), 깊은 복사(Deep copy)
+        const user = {
+            name:'kim',
+            age:40,
+            emails:['thekim@gmail.com']
+        }
+        // const copyUser = user; //얕은 복사
+        let copyUser={...user}
+
+        console.log(copyUser);
+        console.log(copyUser===user);
+        console.log(copyUser.emails === user.emails);
+
+        user.age = 20;
+        console.log('user: ' , user);
+        console.log('copyuser: ',copyUser);
+        console.log('-----------------------');
+        user.emails.push('neo@nuri.net')
+        console.log(user.emails, copyUser.emails);
+        console.log('-----------------------');
+
+        copyUser={}
+        deepCopy(user, copyUser)
+        user.emails.push('xxx@nuri.net')
+        console.log(user.emails, copyUser.emails);
+
+        function deepCopy(source, target){
+            target.name = source.name
+            target.age = source.age
+            target.emails = []
+            for(let email of source.emails){
+                target.emails.push(email)
+            }    
+        }
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js">
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="chk" type="checkbox" checked="" ><br>
+    <button id="ckbtn1">체크상태값 확인</button>
+    <button id="ckbtn2">체크상태값 설정</button><br><hr>
+    
+    <input id="txt" type="text" ><br><br>
+    <button id="txtbtn1">텍스트상태 확인</button>
+    <button id="txtbtn2">텍스트상태 설정</button>
+    <script>
+        let chk=document.getElementById('chk');
+        let ckbtn1=document.getElementById('ckbtn1');
+        let ckbtn2=document.getElementById('ckbtn2');
+        let txt=document.getElementById('txt');
+        let txtbtn1=document.getElementById('txtbtn1');
+        let txtbtn2=document.getElementById('txtbtn2');
+        
+        txtbtn1.addEventListener('click', function(){
+            // console.log(txt.getAttribute('disabled'));
+            console.log(txt.disabled);
+            console.log(txt.readOnly);
+        })
+        // ckbtn1.addEventListener('click', function(){
+        //     // console.log(chk.getAttribute('checked')); // 실시간 체크값 확인
+        //     console.log(chk.checked); // 실시간 상태값 확인
+        // })
+        ckbtn2.addEventListener('click', function(){
+            chk.checked = true;
+            console.dir(chk);
+        })
+    </script>
+</body>
+</html>

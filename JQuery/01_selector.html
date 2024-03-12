@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.7.1.js"></script>
+    <script>
+        // $(document).ready(function(){
+        // })
+        $(function(){
+            $('#idSel').click(function(){
+                $('#one').html('안녕하세요')
+            })
+            $('#classSel').click(function(){
+                // $('.cls').css('background-color','blue').css('color','yellow')
+                $('.cls').css({'background-color':'blue','color':'yellow'})
+            })
+            $('#tagSel').click(function(){
+                $('p').css('color','red')
+            })
+        })
+        
+    </script>
+</head>
+<body>
+    <h1>클래스가 없다.</h1>
+		<h1 class="cls">클래스가 있다.</h1>
+		<h2>클래스가 없다.</h2>
+		<h2 class="cls">클래스가 있다.</h2>
+
+		<p id="one"></p>
+		<p>태그만 있는 녀석</p>
+		<p>태그만 있는 녀석</p>		
+
+		<button id="idSel">아이디</button>
+		<button id="classSel">클래스</button>
+		<button id="tagSel">태그</button>
+</body>
+</html>

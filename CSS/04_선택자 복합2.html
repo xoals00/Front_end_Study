@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 인접 형제 선택자 : .orange의 다음 형제 요소 하나를 선택*/
+    .orange + li{
+      color: red;
+    }
+    /* 일반 형제 선택자 : .orange의 다음 형제 요소 모두를 선택 */
+    .orange ~ li{
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>딸기</li>
+    <li>수박</li>
+    <li class="orange">오렌지</li>
+    <li>망고</li>
+    <li>사과</li>
+  </ul>
+</body>
+</html>
